@@ -790,16 +790,286 @@
       background: #75419a;
     }
 
-    .ai-glow {
+    /* REPORTS */
+    .reports-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.55fr;
+      gap: 30px;
+    }
+
+    .featured-report {
+      min-height: 310px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #35104f 0%, #5d2185 100%);
+      padding: 28px;
+      display: flex;
+      align-items: flex-end;
+      color: #ffffff;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #dcd6e4;
+      box-shadow: 0 6px 20px rgba(53, 16, 79, 0.15);
+      transition: all 0.3s ease;
+    }
+
+    .featured-report:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 30px rgba(53, 16, 79, 0.25);
+    }
+
+    .featured-report::before {
+      content: "";
       position: absolute;
-      width: 160px;
-      height: 160px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
-      background: #8a43ba;
-      filter: blur(45px);
-      right: -50px;
-      bottom: -50px;
-      opacity: 0.5;
+      background: rgba(234, 199, 78, 0.2);
+      filter: blur(30px);
+      top: 10%;
+      right: 10%;
+    }
+
+    .featured-report h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 0 0 8px;
+    }
+
+    .featured-report p {
+      font-size: 12px;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    .report-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .report-item {
+      background: #ffffff;
+      border: 1px solid #dcd6e4;
+      border-radius: 10px;
+      padding: 18px;
+      transition: all 0.25s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+
+    .report-item:hover {
+      border-color: var(--purple);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(93, 33, 133, 0.1);
+    }
+
+    .report-tag {
+      font-size: 10px;
+      color: var(--purple);
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .report-item h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--purple-dark);
+      margin: 6px 0 8px;
+    }
+
+    .report-item p {
+      font-size: 12px;
+      color: #6c6775;
+      line-height: 1.55;
+      margin: 0 0 10px;
+    }
+
+    .report-item a {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--purple);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: gap 0.2s ease;
+    }
+
+    .report-item:hover a {
+      gap: 8px;
+    }
+
+    /* MONITORS */
+    .monitor-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .monitor-card {
+      min-height: 155px;
+      border-radius: 10px;
+      padding: 22px;
+      color: #ffffff;
+      background: #38105a;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.12);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .monitor-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+    }
+
+    .monitor-card:nth-child(2) { background: #512078; }
+    .monitor-card:nth-child(3) { background: #7040a0; }
+    .monitor-card:nth-child(4) { background: #164c62; }
+    .monitor-card:nth-child(5) { background: #164d3e; }
+    .monitor-card:nth-child(6) { background: #351842; }
+
+    .monitor-card::after {
+      content: attr(data-mark);
+      position: absolute;
+      right: 12px;
+      bottom: -6px;
+      font-size: 48px;
+      font-weight: 900;
+      opacity: 0.12;
+    }
+
+    .monitor-card h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin: 0 0 8px;
+    }
+
+    .monitor-card p {
+      font-size: 12px;
+      line-height: 1.55;
+      opacity: 0.9;
+    }
+
+    .monitor-card a {
+      position: absolute;
+      bottom: 18px;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+      padding-bottom: 2px;
+      transition: border-color 0.2s ease;
+    }
+
+    .monitor-card:hover a {
+      border-color: #ffffff;
+    }
+
+    /* CTA */
+    .cta {
+      margin: 10px 40px 55px;
+      padding: 45px 50px;
+      min-height: 160px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #28083b 0%, #4b196e 100%);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(234, 199, 78, 0.3);
+      box-shadow: 0 10px 30px rgba(40, 8, 59, 0.2);
+    }
+
+    .cta::after {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: #6f22a3;
+      filter: blur(55px);
+      right: -40px;
+      top: -65px;
+      opacity: 0.6;
+    }
+
+    .cta-content,
+    .cta-button {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta h2 {
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1.2;
+      margin: 0 0 10px;
+    }
+
+    .cta p {
+      font-size: 13px;
+      color: #e0d8e8;
+      max-width: 520px;
+      margin: 0;
+    }
+
+    .cta-button {
+      background: linear-gradient(135deg, #eac74e 0%, #ffd966 100%);
+      color: #28083b;
+      border: 0;
+      border-radius: 8px;
+      padding: 14px 26px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 15px rgba(234, 199, 78, 0.3);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(234, 199, 78, 0.5);
+    }
+
+    /* FOOTER */
+    .footer {
+      text-align: center;
+      color: #aaaaaa;
+      font-size: 11px;
+      padding-bottom: 25px;
+    }
+
+    /* RESPONSIVE BREAKPOINTS */
+    @media (max-width: 1000px) {
+      .application-grid { grid-template-columns: repeat(2, 1fr); }
+      .ai-layout { grid-template-columns: 1fr; }
+      .reports-layout { grid-template-columns: 1fr; }
+      .monitor-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 700px) {
+      :root { --sidebar-width: 0px; }
+      .sidebar { width: 0; }
+      .sidebar.expanded { width: 235px; }
+      .main { margin-left: 0; }
+      .sidebar.expanded ~ .main { margin-left: 0; }
+      .mobile-menu { display: inline-block; }
+      .topbar { padding: 0 12px; }
+      .topbar-left { min-width: auto; }
+      .top-actions { min-width: auto; gap: 8px; }
+      .top-actions .user-name, .top-actions .language { display: none; }
+      .search-wrap { display: none; }
+      .hero { padding: 40px 20px; }
+      .hero h1 { font-size: 25px; }
+      .section, .quick-access { padding-left: 20px; padding-right: 20px; }
+      .application-grid, .monitor-grid, .report-grid { grid-template-columns: 1fr; }
+      .cta { margin-left: 20px; margin-right: 20px; padding: 28px 22px; display: block; }
+      .cta-button { margin-top: 18px; }
+      .date-picker { left: 10px; }
     }
   </style>
 </head>
@@ -1438,9 +1708,666 @@
 
       </div>
 
+    <!-- =====================================================
+         REPORTS
+    ====================================================== -->
+
+    <section class="section fade-in-on-scroll">
+
+      <div class="section-header">
+
+        <div>
+
+          <div class="section-kicker">
+            Insights & Reports
+          </div>
+
+          <h2 class="section-title">
+            Drive insights from reports and dashboards.
+          </h2>
+
+          <p class="section-description">
+            Research, analysis, and performance reports produced
+            by the Data Science Team — covering credit risk,
+            customer behaviour, fraud, and AI in banking.
+          </p>
+
+        </div>
+
+        <button class="outline-button">
+          View all reports
+          <i class="fas fa-chevron-right"></i>
+        </button>
+
+      </div>
+
+
+      <div class="reports-layout">
+
+
+        <article class="featured-report">
+
+          <div>
+
+            <h3>
+              Data that tells the story of the bank.
+            </h3>
+
+            <p>
+              The DS team publishes regular reports on deposits,
+              customer growth, digital channels, and lending trends
+              to support data-driven decisions.
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <div class="report-grid">
+
+          <article class="report-item">
+
+            <div class="report-tag">
+              Deposits
+            </div>
+
+            <h4>
+              Deposit Mix, Segmentation, Pocket Size & Trend Analysis
+            </h4>
+
+            <p>
+              A deep look at deposit inflow by product type,
+              tenor, and customer segment.
+            </p>
+
+            <a href="#">
+              View report →
+            </a>
+
+          </article>
+
+
+          <article class="report-item">
+
+            <div class="report-tag">
+              Digital Channels
+            </div>
+
+            <h4>
+              Digital Transaction — Success & Reliability Scorecard
+            </h4>
+
+            <p>
+              End-to-end digital account opening success rates
+              and reliability metrics.
+            </p>
+
+            <a href="#">
+              View report →
+            </a>
+
+          </article>
+
+
+          <article class="report-item">
+
+            <div class="report-tag">
+              Customer Acquisition
+            </div>
+
+            <h4>
+              Customer Acquisition & Digital Penetration Report
+            </h4>
+
+            <p>
+              Tracking new-to-bank customer volumes and
+              digital penetration rates.
+            </p>
+
+            <a href="#">
+              View report →
+            </a>
+
+          </article>
+
+
+          <article class="report-item">
+
+            <div class="report-tag">
+              Digital Loans
+            </div>
+
+            <h4>
+              Digital Loan Performance
+            </h4>
+
+            <p>
+              Disbursement volumes, repayment trends,
+              and delinquency rates.
+            </p>
+
+            <a href="#">
+              View report →
+            </a>
+
+          </article>
+
+        </div>
+
+      </div>
+
     </section>
 
+
+    <!-- =====================================================
+         UTILITIES
+    ====================================================== -->
+
+    <section class="section light fade-in-on-scroll">
+
+      <div class="section-header">
+
+        <div>
+
+          <div class="section-kicker">
+            Utilities
+          </div>
+
+          <h2 class="section-title">
+            Operational monitors that keep the
+            <br>
+            bank running.
+          </h2>
+
+          <p class="section-description">
+            Live dashboards for every critical system — NIP,
+            cards, mobile banking, and digital channels —
+            monitored in real time by the DS team.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="monitor-grid">
+
+        <article
+          class="monitor-card"
+          data-mark="NIP"
+        >
+
+          <h3>
+            NIP Transactions Monitor
+          </h3>
+
+          <p>
+            Real-time visibility into all NIP inter-bank transfers —
+            inflows, outflows, failure rates, settlement status,
+            and volume trends.
+          </p>
+
+          <a href="#">
+            Open monitor →
+          </a>
+
+        </article>
+
+
+        <article
+          class="monitor-card"
+          data-mark="DCM"
+        >
+
+          <h3>
+            Digital Channels Monitor
+          </h3>
+
+          <p>
+            Track uptime, transaction success rates, and active
+            user volumes across mobile banking, internet banking,
+            and USSD.
+          </p>
+
+          <a href="#">
+            Open monitor →
+          </a>
+
+        </article>
+
+
+        <article
+          class="monitor-card"
+          data-mark="SSR"
+        >
+
+          <h3>
+            Self Service Report
+          </h3>
+
+          <p>
+            A consolidated view of ATM, POS, and kiosk performance —
+            transaction success, downtime incidents, and cost attribution.
+          </p>
+
+          <a href="#">
+            View report →
+          </a>
+
+        </article>
+
+
+        <article
+          class="monitor-card"
+          data-mark="Integrify"
+        >
+
+          <h3>
+            Integrify Digital Monitor
+          </h3>
+
+          <p>
+            Monitor workflow health across legacy systems
+            and digital process automations in one view.
+          </p>
+
+          <a href="#">
+            Open monitor →
+          </a>
+
+        </article>
+
+
+        <article
+          class="monitor-card"
+          data-mark="Cards"
+        >
+
+          <h3>
+            Card Transactions Monitoring
+          </h3>
+
+          <p>
+            A real-time view of card transactions across debit
+            and credit, tracking authorization rates, declines,
+            and suspicious activity.
+          </p>
+
+          <a href="#">
+            Open monitor →
+          </a>
+
+        </article>
+
+
+        <article
+          class="monitor-card"
+          data-mark="Mobile"
+        >
+
+          <h3>
+            Mobile Banking Monitor
+          </h3>
+
+          <p>
+            Track active mobile banking sessions, login success
+            rates, transaction volumes, and error events.
+          </p>
+
+          <a href="#">
+            Open monitor →
+          </a>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CTA
+    ====================================================== -->
+
+    <section class="cta fade-in-on-scroll">
+
+      <div class="cta-content">
+
+        <div
+          class="section-kicker"
+          style="color:#eac74e"
+        >
+          Ready to get started?
+        </div>
+
+        <h2>
+          You are one step away
+          <br>
+          from the full picture.
+        </h2>
+
+        <p>
+          This platform is built for the people making decisions
+          that move FCMB forward. If that is you, request access
+          and we will have you set up within two business days.
+        </p>
+
+      </div>
+
+
+      <button
+        class="cta-button"
+        data-toggle="modal"
+        data-target="#accessModal"
+      >
+        Request access
+      </button>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+      Designed & Developed by
+      <strong>Data Science Group</strong>
+
+    </footer>
+
   </main>
+
+
+  <!-- =======================================================
+       ACCESS MODAL
+  ======================================================== -->
+
+  <div
+    class="modal fade"
+    id="accessModal"
+    tabindex="-1"
+  >
+
+    <div class="modal-dialog modal-dialog-centered">
+
+      <div class="modal-content">
+
+        <div class="modal-header">
+
+          <h5 class="modal-title">
+            Request Platform Access
+          </h5>
+
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+          >
+            <span>&times;</span>
+          </button>
+
+        </div>
+
+
+        <div class="modal-body">
+
+          <p>
+            Submit your details to request dashboard access.
+          </p>
+
+          <input
+            class="form-control mb-2"
+            placeholder="Work email"
+          >
+
+          <input
+            class="form-control"
+            placeholder="Reason for access"
+          >
+
+        </div>
+
+
+        <div class="modal-footer">
+
+          <button
+            class="outline-button"
+            data-dismiss="modal"
+          >
+            Cancel
+          </button>
+
+          <button
+            class="btn text-white"
+            style="background:var(--purple)"
+          >
+            Submit request
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =======================================================
+       BOOTSTRAP JAVASCRIPT
+  ======================================================== -->
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+  <!-- =======================================================
+       DASHBOARD INTERACTIVE ENGINE (REVEALING MODULE PATTERN)
+  ======================================================== -->
+
+  <script>
+    /**
+     * Namespaced Application Engine using Revealing Module Pattern
+     */
+    var FCMBDashboard = (function () {
+
+      // Private DOM Cache
+      var DOM = {};
+
+      function cacheDOM() {
+        DOM.sidebar = document.getElementById("sidebar");
+        DOM.sidebarToggle = document.getElementById("sidebarToggle");
+        DOM.mobileMenu = document.getElementById("mobileMenu");
+        DOM.dateTrigger = document.getElementById("dateTrigger");
+        DOM.datePicker = document.getElementById("datePicker");
+        DOM.searchButton = document.getElementById("searchButton");
+        DOM.searchPanel = document.getElementById("searchPanel");
+        DOM.globalSearch = document.getElementById("globalSearch");
+        DOM.searchInput = document.getElementById("searchInput");
+        DOM.dateLabel = document.getElementById("dateLabel");
+        DOM.navItems = document.querySelectorAll(".nav-item");
+        DOM.aiTabs = document.querySelectorAll(".ai-tab");
+        DOM.quickChips = document.querySelectorAll(".quick-chip");
+        DOM.calendarCells = document.querySelectorAll(".calendar-body td:not(.muted)");
+        DOM.searchResults = document.querySelectorAll(".search-result");
+        DOM.animatedElements = document.querySelectorAll(".fade-in-on-scroll");
+      }
+
+      // Sidebar Handler Module
+      function toggleSidebar() {
+        if (DOM.sidebar) {
+          DOM.sidebar.classList.toggle("expanded");
+        }
+      }
+
+      function setupNavigation() {
+        DOM.navItems.forEach(function (item) {
+          item.addEventListener("click", function () {
+            DOM.navItems.forEach(function (nav) {
+              nav.classList.remove("active");
+            });
+            item.classList.add("active");
+          });
+        });
+      }
+
+      // Popovers Module (Date & Search)
+      function setupPopovers() {
+        if (DOM.dateTrigger) {
+          DOM.dateTrigger.addEventListener("click", function (event) {
+            event.stopPropagation();
+            if (DOM.datePicker) DOM.datePicker.classList.toggle("show");
+            if (DOM.searchPanel) DOM.searchPanel.classList.remove("show");
+          });
+        }
+
+        if (DOM.searchButton) {
+          DOM.searchButton.addEventListener("click", function (event) {
+            event.stopPropagation();
+            if (DOM.searchPanel) DOM.searchPanel.classList.toggle("show");
+            if (DOM.datePicker) DOM.datePicker.classList.remove("show");
+          });
+        }
+
+        if (DOM.globalSearch) {
+          DOM.globalSearch.addEventListener("focus", function () {
+            if (DOM.searchPanel) DOM.searchPanel.classList.add("show");
+          });
+        }
+
+        document.addEventListener("click", function () {
+          if (DOM.datePicker) DOM.datePicker.classList.remove("show");
+          if (DOM.searchPanel) DOM.searchPanel.classList.remove("show");
+        });
+
+        if (DOM.datePicker) {
+          DOM.datePicker.addEventListener("click", function (e) { e.stopPropagation(); });
+        }
+        if (DOM.searchPanel) {
+          DOM.searchPanel.addEventListener("click", function (e) { e.stopPropagation(); });
+        }
+      }
+
+      // Date Picker Module
+      function setupDatePicker() {
+        DOM.calendarCells.forEach(function (cell) {
+          cell.addEventListener("click", function () {
+            document.querySelectorAll(".calendar-body td").forEach(function (item) {
+              item.classList.remove("selected");
+            });
+            cell.classList.add("selected");
+            if (DOM.dateLabel) {
+              DOM.dateLabel.textContent = "Sep " + cell.textContent.trim() + ", 2026";
+            }
+            if (DOM.datePicker) {
+              DOM.datePicker.classList.remove("show");
+            }
+          });
+        });
+      }
+
+      // Search Filtering Module
+      function setupSearchFilter() {
+        var handleSearch = function (val) {
+          var query = val.toLowerCase();
+          DOM.searchResults.forEach(function (result) {
+            var text = result.textContent.toLowerCase();
+            result.style.display = text.includes(query) ? "block" : "none";
+          });
+        };
+
+        if (DOM.globalSearch) {
+          DOM.globalSearch.addEventListener("input", function () {
+            if (DOM.searchPanel) DOM.searchPanel.classList.add("show");
+            if (DOM.searchInput) DOM.searchInput.value = DOM.globalSearch.value;
+            handleSearch(DOM.globalSearch.value);
+          });
+        }
+
+        if (DOM.searchInput) {
+          DOM.searchInput.addEventListener("input", function () {
+            if (DOM.globalSearch) DOM.globalSearch.value = DOM.searchInput.value;
+            handleSearch(DOM.searchInput.value);
+          });
+        }
+      }
+
+      // Tabs & Quick Chips Module
+      function setupInteractivity() {
+        DOM.aiTabs.forEach(function (tab) {
+          tab.addEventListener("click", function () {
+            DOM.aiTabs.forEach(function (item) {
+              item.classList.remove("active");
+            });
+            tab.classList.add("active");
+          });
+        });
+
+        DOM.quickChips.forEach(function (chip) {
+          chip.addEventListener("click", function () {
+            console.log("Quick Access item opened:", chip.textContent.trim());
+          });
+        });
+      }
+
+      // Intersection Observer Module for Animated Fade-in on Scroll
+      function setupScrollAnimations() {
+        if ("IntersectionObserver" in window) {
+          var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.1 });
+
+          DOM.animatedElements.forEach(function (el) {
+            observer.observe(el);
+          });
+        } else {
+          DOM.animatedElements.forEach(function (el) {
+            el.classList.add("visible");
+          });
+        }
+      }
+
+      // Bind all private event handlers
+      function bindEvents() {
+        if (DOM.sidebarToggle) DOM.sidebarToggle.addEventListener("click", toggleSidebar);
+        if (DOM.mobileMenu) DOM.mobileMenu.addEventListener("click", toggleSidebar);
+
+        setupNavigation();
+        setupPopovers();
+        setupDatePicker();
+        setupSearchFilter();
+        setupInteractivity();
+        setupScrollAnimations();
+      }
+
+      // Public Initialization Method
+      function init() {
+        cacheDOM();
+        bindEvents();
+      }
+
+      // Public API
+      return {
+        init: init,
+        toggleSidebar: toggleSidebar
+      };
+
+    })();
+
+    // Initialize application when DOM is ready
+    document.addEventListener("DOMContentLoaded", function () {
+      FCMBDashboard.init();
+    });
+  </script>
 
 </body>
 </html>
