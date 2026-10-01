@@ -561,12 +561,245 @@
       box-shadow: 0 2px 4px rgba(0,0,0,0.02);
     }
 
-    .quick-chip:hover {
+    /* GENERAL SECTIONS */
+    .section {
+      padding: 55px 40px;
+    }
+
+    .section.light {
+      background: var(--lavender);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 32px;
+    }
+
+    .section-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--purple-dark);
+      margin: 0 0 6px;
+      letter-spacing: -0.01em;
+    }
+
+    .section-description {
+      font-size: 13px;
+      color: #666070;
+      max-width: 580px;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .outline-button {
+      border: 1px solid var(--purple);
+      background: #ffffff;
+      border-radius: 6px;
+      padding: 9px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--purple);
+      height: max-content;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .outline-button:hover {
       background: var(--purple);
       color: #ffffff;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(93, 33, 133, 0.2);
+    }
+
+    /* APPLICATIONS */
+    .application-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .application-card {
+      min-height: 130px;
+      background: #ffffff;
+      border: 1px solid #dcd6e4;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 3px 10px rgba(35, 20, 45, 0.04);
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+
+    .application-card:hover {
+      transform: translateY(-4px);
       border-color: var(--purple);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 14px rgba(93, 33, 133, 0.25);
+      box-shadow: 0 12px 28px rgba(50, 20, 70, 0.12);
+    }
+
+    .card-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: #f0e6f7;
+      color: var(--purple);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      font-size: 15px;
+      transition: all 0.25s ease;
+    }
+
+    .application-card:hover .card-icon {
+      background: var(--purple);
+      color: #ffffff;
+      transform: scale(1.08);
+    }
+
+    .application-card h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--purple-dark);
+      margin: 0 0 7px;
+    }
+
+    .application-card p {
+      font-size: 12px;
+      color: #726e7b;
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    /* AI PRODUCTS */
+    .ai-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .ai-tabs {
+      display: flex;
+      gap: 24px;
+      border-bottom: 2px solid #e7e0ec;
+      margin-bottom: 28px;
+    }
+
+    .ai-tab {
+      padding-bottom: 12px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #857e8d;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .ai-tab:hover {
+      color: var(--purple);
+    }
+
+    .ai-tab.active {
+      color: var(--purple);
+      font-weight: 700;
+      border-bottom: 3px solid var(--purple);
+      margin-bottom: -2px;
+    }
+
+    .ai-copy h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--purple-dark);
+      margin-bottom: 12px;
+    }
+
+    .ai-copy p,
+    .ai-copy li {
+      font-size: 13px;
+      color: #5c5863;
+      line-height: 1.7;
+    }
+
+    .ai-copy ul {
+      padding: 0;
+      list-style: none;
+    }
+
+    .ai-copy li {
+      margin: 8px 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .ai-copy li i {
+      color: var(--purple);
+      margin-right: 10px;
+      font-size: 14px;
+    }
+
+    .ai-visual {
+      height: 260px;
+      border-radius: 12px;
+      background: var(--purple-deep);
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 18px 40px rgba(55, 17, 79, 0.22);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .ai-window {
+      height: 100%;
+      background: #3b0d60;
+      border-radius: 8px;
+      padding: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .chat-line {
+      height: 14px;
+      background: #63318a;
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+
+    .chat-line.right {
+      width: 55%;
+      margin-left: auto;
+      background: #8450a6;
+    }
+
+    .chat-line.short {
+      width: 48%;
+    }
+
+    .chat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .chat-box {
+      height: 34px;
+      background: #56247b;
+      border-radius: 6px;
+    }
+
+    .chat-box:nth-child(2) {
+      background: #75419a;
+    }
+
+    .ai-glow {
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: #8a43ba;
+      filter: blur(45px);
+      right: -50px;
+      bottom: -50px;
+      opacity: 0.5;
     }
   </style>
 </head>
@@ -950,6 +1183,258 @@
         <button class="quick-chip">
           Wealth Dashboard
         </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         APPLICATIONS
+    ====================================================== -->
+
+    <section class="section fade-in-on-scroll">
+
+      <div class="section-header">
+
+        <div>
+
+          <div class="section-kicker">
+            Applications
+          </div>
+
+          <h2 class="section-title">
+            Every tool your team needs, built by
+            <br>
+            people who know the data.
+          </h2>
+
+          <p class="section-description">
+            The Apps section brings every Data Science tool into one place.
+            No switching systems, no chasing access, no waiting for reports.
+          </p>
+
+        </div>
+
+        <button class="outline-button">
+          All applications
+          <i class="fas fa-chevron-right"></i>
+        </button>
+
+      </div>
+
+
+      <div class="application-grid">
+
+        <article class="application-card">
+
+          <div class="card-icon">
+            <i class="far fa-chart-bar"></i>
+          </div>
+
+          <h3>
+            Performance Mgt. Central
+          </h3>
+
+          <p>
+            Track individual, team, and business unit performance against
+            targets, KPIs, scorecards, and appraisal data.
+          </p>
+
+        </article>
+
+
+        <article class="application-card">
+
+          <div class="card-icon">
+            <i class="far fa-user"></i>
+          </div>
+
+          <h3>
+            Customer 360
+          </h3>
+
+          <p>
+            A complete view of your customer — transactions, behavior,
+            risk score, and lifecycle stage in one profile.
+          </p>
+
+        </article>
+
+
+        <article class="application-card">
+
+          <div class="card-icon">
+            <i class="fas fa-briefcase"></i>
+          </div>
+
+          <h3>
+            CRM Campaign Solution
+          </h3>
+
+          <p>
+            Segment customers intelligently, run targeted campaigns,
+            and track acquisition ROI across channels.
+          </p>
+
+        </article>
+
+
+        <article class="application-card">
+
+          <div class="card-icon">
+            <i class="fas fa-tag"></i>
+          </div>
+
+          <h3>
+            Sale Call Plan
+          </h3>
+
+          <p>
+            Track relationship manager activity and monitor targeted
+            progress across segments.
+          </p>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         AI PRODUCTS
+    ====================================================== -->
+
+    <section class="section light fade-in-on-scroll">
+
+      <div class="section-header">
+
+        <div>
+
+          <div class="section-kicker">
+            AI Products
+          </div>
+
+          <h2 class="section-title">
+            Intelligence that works while you work.
+          </h2>
+
+          <p class="section-description">
+            The AI product suite applies machine learning and language
+            models directly to FCMB's core operations — from credit
+            underwriting to document processing.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="ai-layout">
+
+        <div>
+
+          <div class="ai-tabs">
+
+            <div class="ai-tab active">
+              Eazi AI
+            </div>
+
+            <div class="ai-tab">
+              Fraud Understanding
+            </div>
+
+            <div class="ai-tab">
+              Universal Document Pro
+            </div>
+
+            <div class="ai-tab">
+              Churn and propensity model
+            </div>
+
+          </div>
+
+
+          <div class="ai-copy">
+
+            <h3>
+              Your banking assistant, powered by AI.
+            </h3>
+
+            <p>
+              Eazi AI is a conversational intelligence layer for
+              FCMB staff and customers — answering questions,
+              checking eligibility, and routing complex queries
+              in natural language.
+            </p>
+
+            <ul>
+
+              <li>
+                <i class="fas fa-check"></i>
+                Natural language queries across all products
+              </li>
+
+              <li>
+                <i class="fas fa-check"></i>
+                Product eligibility checks in real time
+              </li>
+
+              <li>
+                <i class="fas fa-check"></i>
+                Trained on FCMB policies & internal knowledge
+              </li>
+
+              <li>
+                <i class="fas fa-check"></i>
+                Intelligent escalation routing to agents
+              </li>
+
+            </ul>
+
+            <a
+              href="#"
+              style="color:var(--purple);font-size:12px;font-weight:600"
+            >
+              TRY IT OUT →
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div class="ai-visual">
+
+          <div class="ai-window">
+
+            <div class="chat-line"></div>
+
+            <div class="chat-line right"></div>
+
+            <div class="chat-line short"></div>
+
+            <div class="chat-grid">
+
+              <div class="chat-box"></div>
+
+              <div class="chat-box"></div>
+
+            </div>
+
+            <div
+              class="chat-line right"
+              style="margin-top:12px"
+            ></div>
+
+            <div class="chat-line short"></div>
+
+          </div>
+
+          <div class="ai-glow"></div>
+
+        </div>
 
       </div>
 
