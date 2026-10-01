@@ -22,7 +22,7 @@
 
   <style>
     /* =============================================
-       10m MILESTONE — CSS Design Tokens & Reset
+       10m — CSS Design Tokens & Reset
        ============================================= */
 
     :root {
@@ -58,16 +58,143 @@
       font-family: var(--font-body);
       -webkit-font-smoothing: antialiased;
     }
+
+    /* =============================================
+       20m — Page Layout & Brand Header
+       ============================================= */
+
+    /* --- Full-page flex column wrapper --- */
+    .login-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* --- Brand header --- */
+    .brand {
+      padding-top: 40px;
+      text-align: center;
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: var(--text);
+    }
+
+    /* Brand icon badge */
+    .brand-mark {
+      display: inline-flex;
+      width: 31px;
+      height: 31px;
+      margin-right: 7px;
+      vertical-align: -7px;
+      align-items: center;
+      justify-content: center;
+      background: var(--brand);
+      border-radius: 2px;
+      color: #fff;
+      font-size: 8px;
+      line-height: 1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Gold accent bar at bottom of badge */
+    .brand-mark::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 6px;
+      background: var(--accent-gold);
+    }
+
+    .brand-mark span {
+      position: relative;
+      z-index: 2;
+      margin-top: -5px;
+      font-family: Arial, sans-serif;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    /* --- Login content area (centre card vertically) --- */
+    .login-area {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 230px 20px 80px;
+    }
+
+    /* Card container — constrained width */
+    .login-card {
+      width: 100%;
+      max-width: 352px;
+    }
+
+    /* --- Footer --- */
+    .footer {
+      padding: 0 20px 42px;
+      text-align: center;
+      color: #425873;
+      font-family: var(--font-serif);
+      font-size: 14px;
+    }
+
+    .footer strong {
+      font-weight: 700;
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 576px) {
+      .brand {
+        padding-top: 25px;
+      }
+
+      .login-area {
+        padding-top: 120px;
+        padding-bottom: 50px;
+      }
+
+      .login-card {
+        max-width: 360px;
+      }
+
+      .footer {
+        padding-bottom: 25px;
+      }
+    }
   </style>
 </head>
 
 <body>
-  <!-- markup goes here -->
-</body>
+  <main class="login-page">
 
-<!-- Bootstrap 4 JS bundle -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Brand header -->
+    <header class="brand" aria-label="Data Science">
+      <span class="brand-mark"><span>FCMB</span></span>
+      <span>Data Science</span>
+    </header>
+
+    <!-- Login content area -->
+    <section class="login-area">
+      <div class="login-card">
+        <!-- form goes here -->
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      &copy; 2026 Designed &amp; Developed by <strong>Data Science</strong>
+    </footer>
+
+  </main>
+
+  <!-- Bootstrap 4 JS bundle -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </html>
