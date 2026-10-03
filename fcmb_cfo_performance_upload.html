@@ -312,6 +312,94 @@
             </div>
           </div>
 
+          <!-- RECENT CFO INGESTION LOG TABLE -->
+          <section class="panel uploads-panel">
+            <div class="panel-heading">
+              <div class="panel-title-wrap">
+                <h2>CFO Ingestion Log &amp; History</h2>
+                <span class="count-pill">8 Ingested Packages</span>
+              </div>
+              <button class="text-button" data-view="all-logs">View Full Audit Log <i class="fas fa-chevron-right"></i></button>
+            </div>
+
+            <div class="table-responsive">
+              <table id="cfoUploadsTable" class="table uploads-table">
+                <thead>
+                  <tr>
+                    <th>Package Name</th>
+                    <th>Period</th>
+                    <th>Subsidiary Entity</th>
+                    <th>Classification</th>
+                    <th>Ingested At</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-search="FCMB CONSOLIDATED FINANCIALS Q3 2026">
+                    <td>
+                      <button class="file-link cfo-detail-trigger" data-title="FCMB_Q3_2026_Consolidated_Financials.xlsx" data-details="Consolidated Financial Package for Q3 2026. Total Revenue: NGN 142.8B. Net Interest Income: NGN 68.4B. Status: Approved by Board Audit Committee.">
+                        <span class="file-icon"><i class="far fa-file-excel"></i></span>
+                        <span>FCMB_Q3_2026_Consolidated_Financials.xlsx</span>
+                      </button>
+                    </td>
+                    <td>FY2026 Q3</td>
+                    <td>FCMB Group Plc</td>
+                    <td>Unaudited Quarterly</td>
+                    <td>02 Oct 2026, 16:45</td>
+                    <td><span class="status-pill status-passed"><i class="fas fa-check"></i> Passed</span></td>
+                    <td><button class="btn btn-sm btn-light cfo-detail-trigger" data-title="FCMB_Q3_2026_Consolidated_Financials.xlsx">View</button></td>
+                  </tr>
+
+                  <tr data-search="CSL STOCKBROKERS Q3 TRIAL BALANCE">
+                    <td>
+                      <button class="file-link cfo-detail-trigger" data-title="CSL_Q3_2026_Trial_Balance.xlsx" data-details="CSL Stockbrokers Ltd Q3 2026 Audited Trial Balance. Total Assets: NGN 48.2B. Brokerage Revenue: NGN 6.1B. Compliance: SEC / NGX Compliant.">
+                        <span class="file-icon"><i class="far fa-file-excel"></i></span>
+                        <span>CSL_Q3_2026_Trial_Balance.xlsx</span>
+                      </button>
+                    </td>
+                    <td>FY2026 Q3</td>
+                    <td>CSL Stockbrokers Ltd</td>
+                    <td>Unaudited Quarterly</td>
+                    <td>01 Oct 2026, 11:20</td>
+                    <td><span class="status-pill status-passed"><i class="fas fa-check"></i> Passed</span></td>
+                    <td><button class="btn btn-sm btn-light cfo-detail-trigger" data-title="CSL_Q3_2026_Trial_Balance.xlsx">View</button></td>
+                  </tr>
+
+                  <tr data-search="FCMB LIMITED BOARD FINANCE PACK">
+                    <td>
+                      <button class="file-link cfo-detail-trigger" data-title="FCMB_Limited_H1_2026_Board_Pack.pdf" data-details="FCMB Limited Banking Division H1 2026 Executive Board Pack. Capital Adequacy Ratio: 16.4%. NPL Ratio: 3.8%. Verified by Group CFO.">
+                        <span class="file-icon"><i class="far fa-file-pdf"></i></span>
+                        <span>FCMB_Limited_H1_2026_Board_Pack.pdf</span>
+                      </button>
+                    </td>
+                    <td>FY2026 Q2</td>
+                    <td>FCMB Limited</td>
+                    <td>Executive Board Pack</td>
+                    <td>15 Jul 2026, 09:30</td>
+                    <td><span class="status-pill status-confidential"><i class="fas fa-user-shield"></i> Executive</span></td>
+                    <td><button class="btn btn-sm btn-light cfo-detail-trigger" data-title="FCMB_Limited_H1_2026_Board_Pack.pdf">View</button></td>
+                  </tr>
+
+                  <tr data-search="CREDIT DIRECT REGULATORY RETURN CBN">
+                    <td>
+                      <button class="file-link cfo-detail-trigger" data-title="Credit_Direct_Q2_Regulatory_Return.xml" data-details="Credit Direct Ltd Q2 CBN / SEC Statutory Regulatory Return. Total Micro-loans Disbursed: NGN 18.5B. Statutory Reserve Balance: NGN 2.4B.">
+                        <span class="file-icon"><i class="far fa-file-code"></i></span>
+                        <span>Credit_Direct_Q2_Regulatory_Return.xml</span>
+                      </button>
+                    </td>
+                    <td>FY2026 Q2</td>
+                    <td>Credit Direct Ltd</td>
+                    <td>Regulatory Return (CBN)</td>
+                    <td>10 Jul 2026, 14:15</td>
+                    <td><span class="status-pill status-passed"><i class="fas fa-check"></i> Passed</span></td>
+                    <td><button class="btn btn-sm btn-light cfo-detail-trigger" data-title="Credit_Direct_Q2_Regulatory_Return.xml">View</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
         </section>
       </main>
 
@@ -325,6 +413,62 @@
 
   <!-- MOBILE OVERLAY -->
   <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+  <!-- CONFIRMATION & DIGITAL SIGN-OFF MODAL -->
+  <div class="modal fade" id="cfoSubmitModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content custom-modal">
+        <div class="modal-header">
+          <div>
+            <span class="modal-kicker">CFO DIGITAL SIGN-OFF</span>
+            <h5 class="modal-title">Confirm Financial Ingestion</h5>
+          </div>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p class="modal-description">You are about to submit executive financial performance data into the FCMB Data Analytics Pipeline.</p>
+          <div class="val-item" style="margin-bottom: 16px; background: var(--purple-wash);">
+            <div class="val-icon pass"><i class="fas fa-shield-alt"></i></div>
+            <div>
+              <div id="modalConfirmFile" class="val-label">FCMB_Q3_2026_Financial_Statement_Final.xlsx</div>
+              <div id="modalConfirmMeta" class="val-sub">FCMB Group Plc • FY2026 Q3 • Strictly Confidential</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="cfoPasskey">Executive Passkey / Authorization PIN</label>
+            <input type="password" id="cfoPasskey" class="form-control" placeholder="••••••••" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-light" data-dismiss="modal">Cancel</button>
+          <button id="confirmIngestBtn" class="btn btn-purple"><i class="fas fa-check-circle"></i> Authorize &amp; Ingest</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DETAIL MODAL -->
+  <div class="modal fade" id="detailModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content custom-modal">
+        <div class="modal-header">
+          <div>
+            <span class="modal-kicker">FINANCIAL PACKAGE DETAILS</span>
+            <h5 id="detailTitle" class="modal-title">Report Details</h5>
+          </div>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div id="detailBody" class="modal-body"></div>
+        <div class="modal-footer">
+          <button class="btn btn-purple" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- JS MODULE ARCHITECTURE -->
   <script src="js/namespace.js"></script>

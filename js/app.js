@@ -185,6 +185,134 @@
     }
   });
 
+  /* ── CFO Upload page boot (fcmb_cfo_performance_upload.html) ── */
+  register('cfo-upload', function () {
+    var U = FCMB.Utils;
+
+    /* Sidebar */
+    if (FCMB.modules.Sidebar) {
+      new FCMB.modules.Sidebar({
+        selector:       '#sidebar',
+        collapseBtn:    '#collapseSidebar',
+        mobileOpenBtn:  '#mobileSidebarOpen',
+        mobileCloseBtn: '#mobileSidebarClose',
+        overlay:        '#sidebarOverlay',
+        storageKey:     FCMB.config.storageKeys.sidebarCollapsed
+      });
+    }
+
+    /* Calendar */
+    if (FCMB.modules.Calendar) {
+      new FCMB.modules.Calendar({
+        triggerSelector: '#dateButton',
+        pickerSelector:  '#datePicker',
+        titleSelector:   '#calendarTitle',
+        daysSelector:    '#calendarDays',
+        displaySelector: '#currentDate',
+        todayBtn:        '#todayButton',
+        closeBtn:        '#closeDate'
+      });
+    }
+
+    /* Search */
+    if (FCMB.Search) {
+      FCMB.Search.init({
+        inputSelector:   '#globalSearch',
+        buttonSelector:  '#searchButton',
+        resultsSelector: '#searchResults',
+        items:           FCMB.config.searchItems
+      });
+    }
+
+    /* Theme toggle */
+    if (FCMB.Theme) {
+      FCMB.Theme.init({
+        toggleSelector: '#themeToggle',
+        storageKey:     FCMB.config.storageKeys.theme
+      });
+    }
+
+    /* Drag and Drop Dropzone Handlers */
+    var dropzone = U.qs('#uploadDropzone');
+    var fileInput = U.qs('#fileInput');
+    var previewBox = U.qs('#filePreviewBox');
+    var removeBtn = U.qs('#removeFileBtn');
+
+    if (dropzone && fileInput) {
+      dropzone.addEventListener('click', function () { fileInput.click(); });
+
+      dropzone.addEventListener('dragover', function (e) {
+        e.preventDefault();
+        dropzone.classList.add('drag-over');
+      });
+
+      dropzone.addEventListener('dragleave', function () {
+        dropzone.classList.remove('drag-over');
+      });
+
+      dropzone.addEventListener('drop', function (e) {
+        e.preventDefault();
+        dropzone.classList.remove('drag-over');
+        if (e.dataTransfer.files && e.dataTransfer.files.length) {
+          handleFileSelected(e.dataTransfer.files[0]);
+        }
+      });
+
+      fileInput.addEventListener('change', function () {
+        if (fileInput.files && fileInput.files.length) {
+          handleFileSelected(fileInput.files[0]);
+        }
+      });
+
+      if (removeBtn) {
+        removeBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          fileInput.value = '';
+          if (previewBox) { previewBox.classList.remove('active'); }
+        });
+      }
+    }
+
+    function handleFileSelected(file) {
+      if (!previewBox) return;
+      var nameEl = U.qs('#previewFilename');
+      var metaEl = U.qs('#previewMeta');
+      if (nameEl) nameEl.textContent = file.name;
+      if (metaEl) {
+        var sizeMb = (file.size / (1024 * 1024)).toFixed(2);
+        metaEl.textContent = sizeMb + ' MB • ' + (file.type || 'Document') + ' • Pre-flight Passed';
+      }
+      previewBox.classList.add('active');
+    }
+
+    /* CFO Submit Modal Handler */
+    var submitBtn = U.qs('#cfoSubmitBtn');
+    if (submitBtn) {
+      submitBtn.addEventListener('click', function () {
+        if (FCMB.Modal) { FCMB.Modal.show('#cfoSubmitModal'); }
+      });
+    }
+
+    var confirmBtn = U.qs('#confirmIngestBtn');
+    if (confirmBtn) {
+      confirmBtn.addEventListener('click', function () {
+        if (FCMB.Modal) { FCMB.Modal.hide('#cfoSubmitModal'); }
+        alert('CFO Financial Report Ingested Successfully! Audit record generated.');
+      });
+    }
+
+    /* Detail Modal Triggers */
+    U.qsa('.cfo-detail-trigger').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var title = btn.dataset.title || 'Financial Package';
+        var details = btn.dataset.details || 'No additional details provided.';
+        if (FCMB.Modal) {
+          FCMB.Modal.showDetail(title, details, '#detailModal', '#detailTitle', '#detailBody');
+        }
+      });
+    });
+  });
+
   /* ── DOMContentLoaded — run matching page boots ─────────── */
   document.addEventListener('DOMContentLoaded', function () {
     var page = document.body.dataset.page || '';
