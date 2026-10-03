@@ -1,0 +1,68 @@
+/* ============================================================
+   css/variables.css
+   FCMB Design System — Design Tokens
+   Single source of truth for all colour, spacing & type values
+   ============================================================ */
+
+:root {
+  /* ── Brand palette ─────────────────────────────────────── */
+  --purple:        #5d2185;
+  --purple-dark:   #35104f;
+  --purple-deep:   #28083b;
+  --purple-mid:    #6d2c9b;
+  --purple-light:  #8e44ad;
+  --purple-pale:   #f3e8fa;
+  --purple-wash:   #faf7fc;
+
+  --accent-gold:   #eac74e;
+  --accent-gold-d: #c9a72e;
+
+  /* ── Semantic colours ──────────────────────────────────── */
+  --green:   #4bb984;
+  --blue:    #77a9df;
+  --red:     #d97076;
+  --yellow:  #e1bd4b;
+  --pink:    #d37bb1;
+  --mint:    #7bd6ad;
+
+  /* ── Neutrals ──────────────────────────────────────────── */
+  --text:        #25262c;
+  --text-muted:  #73747b;
+  --border:      #ececef;
+  --bg:          #ffffff;
+  --bg-soft:     #fafafa;
+
+  /* ── Layout geometry ───────────────────────────────────── */
+  --sidebar-w:           210px;
+  --sidebar-collapsed-w: 68px;
+  --topbar-h:            60px;
+
+  /* ── Shape & motion ────────────────────────────────────── */
+  --radius-sm:  4px;
+  --radius:     8px;
+  --radius-lg:  14px;
+  --shadow-sm:  0 2px 8px  rgba(43,22,59,.07);
+  --shadow:     0 4px 16px rgba(43,22,59,.10);
+  --shadow-lg:  0 8px 32px rgba(43,22,59,.14);
+  --ease:       0.22s ease;
+
+  /* ── Typography ────────────────────────────────────────── */
+  --font-body:   'Inter', 'Segoe UI', Arial, Helvetica, sans-serif;
+  --font-serif:  Georgia, 'Times New Roman', serif;
+  --text-xs:     11px;
+  --text-sm:     12px;
+  --text-base:   13px;
+  --text-md:     14px;
+  --text-lg:     16px;
+  --text-xl:     20px;
+  --text-2xl:    24px;
+}
+
+/* ── Dark-mode overrides (opt-in via data-theme="dark") ─── */
+[data-theme="dark"] {
+  --bg:        #1a1128;
+  --bg-soft:   #231636;
+  --text:      #e8e0f0;
+  --text-muted:#9d90b5;
+  --border:    #2e1f45;
+}

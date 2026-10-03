@@ -1,0 +1,20 @@
+/* ============================================================
+   css/main.css
+   FCMB Design System — Barrel (Entry Point)
+
+   Import order matters:
+     1. variables  — tokens first, everything depends on them
+     2. base       — resets & typography
+     3. layout     — structural shells (sidebar, topbar, grid)
+     4. components — reusable UI pieces (cards, buttons, modals)
+     5. pages/*    — per-page overrides (smallest scope, last)
+   ============================================================ */
+
+@import url('variables.css');
+@import url('base.css');
+
+/* Layout & component partials added in subsequent branches */
+/* @import url('layout.css');     — feat/arch-02 */
+/* @import url('components.css'); — feat/arch-02 */
+/* @import url('pages/dashboard.css'); — feat/dash2-01 */
+/* @import url('pages/login.css');     — feat/arch-06 */
