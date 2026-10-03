@@ -106,6 +106,85 @@
     }
   });
 
+  /* ── Dashboard-v1 boot (dashboard.html — original element IDs) */
+  register('dashboard-v1', function () {
+    var U = FCMB.Utils;
+
+    /* Sidebar maps to original IDs: #sidebarToggle + #mobileMenu */
+    if (FCMB.modules.Sidebar) {
+      new FCMB.modules.Sidebar({
+        selector:       '#sidebar',
+        collapseBtn:    '#sidebarToggle',
+        mobileOpenBtn:  '#mobileMenu',
+        mobileCloseBtn: null,
+        overlay:        null,
+        storageKey:     FCMB.config.storageKeys.sidebarCollapsed
+      });
+    }
+
+    /* Calendar maps to original IDs: #dateTrigger + #dateLabel */
+    if (FCMB.modules.Calendar) {
+      new FCMB.modules.Calendar({
+        triggerSelector: '#dateTrigger',
+        pickerSelector:  '#datePicker',
+        titleSelector:   null,
+        daysSelector:    null,
+        displaySelector: '#dateLabel',
+        todayBtn:        null,
+        closeBtn:        null
+      });
+    }
+
+    /* Search maps to #searchPanel as results container */
+    if (FCMB.Search) {
+      FCMB.Search.init({
+        inputSelector:   '#globalSearch',
+        resultsSelector: '#searchPanel',
+        buttonSelector:  '#searchButton',
+        items:           FCMB.config.searchItems
+      });
+    }
+
+    /* Theme toggle */
+    if (FCMB.Theme) {
+      FCMB.Theme.init({
+        toggleSelector: '#themeToggle',
+        storageKey:     FCMB.config.storageKeys.theme
+      });
+    }
+
+    /* Nav-item active state (dashboard.html uses .nav-item not .side-link) */
+    U.qsa('.nav-item').forEach(function (item) {
+      item.addEventListener('click', function () {
+        U.qsa('.nav-item').forEach(function (n) { n.classList.remove('active'); });
+        item.classList.add('active');
+      });
+    });
+
+    /* AI tabs */
+    U.qsa('.ai-tab').forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        U.qsa('.ai-tab').forEach(function (t) { t.classList.remove('active'); });
+        tab.classList.add('active');
+      });
+    });
+
+    /* Scroll fade-in via IntersectionObserver */
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      U.qsa('.fade-in-on-scroll').forEach(function (el) { observer.observe(el); });
+    } else {
+      U.qsa('.fade-in-on-scroll').forEach(function (el) { el.classList.add('visible'); });
+    }
+  });
+
   /* ── DOMContentLoaded — run matching page boots ─────────── */
   document.addEventListener('DOMContentLoaded', function () {
     var page = document.body.dataset.page || '';
