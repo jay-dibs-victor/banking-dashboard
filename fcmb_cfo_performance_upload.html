@@ -174,7 +174,143 @@
             </div>
           </div>
 
-          <!-- Content sections added in next branch (feature/cfo-03-dropzone-and-form) -->
+          <!-- MAIN INGESTION & PARAMETERS GRID -->
+          <div class="cfo-grid">
+
+            <!-- DRAG & DROP INGESTION CARD -->
+            <div class="dropzone-card">
+              <h2 class="cfo-section-title">
+                <i class="fas fa-cloud-upload-alt"></i> Ingest Financial Performance File
+              </h2>
+              <p class="cfo-section-desc">Drag & drop your formatted financial package or click to browse files.</p>
+
+              <div id="uploadDropzone" class="upload-dropzone">
+                <input type="file" id="fileInput" hidden accept=".xlsx,.csv,.pdf,.xml">
+                <div class="dropzone-icon">
+                  <i class="fas fa-file-excel"></i>
+                </div>
+                <div class="dropzone-prompt">Drop Financial Package Here</div>
+                <div class="dropzone-hint">Supports Excel (.xlsx), CSV, PDF Audit Statement, or XML Packages (Max 50MB)</div>
+                <div class="file-types-chips">
+                  <span class="file-chip"><i class="far fa-file-excel"></i> Trial Balance (.xlsx)</span>
+                  <span class="file-chip"><i class="far fa-file-alt"></i> P&L Statement (.csv)</span>
+                  <span class="file-chip"><i class="far fa-file-pdf"></i> Board Audit (.pdf)</span>
+                </div>
+              </div>
+
+              <!-- Selected File Preview Box -->
+              <div id="filePreviewBox" class="file-preview-box">
+                <div class="preview-icon">
+                  <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="preview-details">
+                  <div id="previewFilename" class="preview-filename">FCMB_Q3_2026_Financial_Statement_Final.xlsx</div>
+                  <div id="previewMeta" class="preview-meta">4.2 MB • Excel Spreadsheet • Ready for Pre-flight Check</div>
+                </div>
+                <button id="removeFileBtn" class="remove-file-btn" type="button" title="Remove file" aria-label="Remove File">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- PARAMETERS FORM CARD -->
+            <div class="cfo-form-card">
+              <h2 class="cfo-section-title">
+                <i class="fas fa-sliders-h"></i> Report Parameters
+              </h2>
+              <p class="cfo-section-desc">Specify metadata for automated compliance indexing.</p>
+
+              <form id="cfoUploadForm" onsubmit="return false;">
+                <div class="form-group">
+                  <label for="reportingPeriod">Reporting Period</label>
+                  <select id="reportingPeriod" class="form-select" required>
+                    <option value="FY2026_Q3" selected>FY2026 — Quarter 3 (Q3)</option>
+                    <option value="FY2026_Q2">FY2026 — Quarter 2 (Q2)</option>
+                    <option value="FY2026_Q1">FY2026 — Quarter 1 (Q1)</option>
+                    <option value="FY2025_ANNUAL">FY2025 — Annual Audited</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="subsidiarySelect">Subsidiary / Entity</label>
+                  <select id="subsidiarySelect" class="form-select" required>
+                    <option value="FCMB_GROUP" selected>FCMB Group Plc (Consolidated)</option>
+                    <option value="FCMB_LIMITED">FCMB Limited (Banking)</option>
+                    <option value="CSL_STOCKBROKERS">CSL Stockbrokers Ltd</option>
+                    <option value="FCMB_CAPITAL">FCMB Capital Markets</option>
+                    <option value="CREDIT_DIRECT">Credit Direct Ltd</option>
+                    <option value="FIRST_CITY">First City Asset Management</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="reportClassification">Report Classification</label>
+                  <select id="reportClassification" class="form-select" required>
+                    <option value="UNAUDITED_QUARTERLY" selected>Quarterly Unaudited Statement</option>
+                    <option value="AUDITED_ANNUAL">Annual Audited Return</option>
+                    <option value="BOARD_PACK">Executive Board Finance Pack</option>
+                    <option value="REGULATORY_CBN">Regulatory Return — CBN / SEC</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="confidentialityLevel">Confidentiality Level</label>
+                  <select id="confidentialityLevel" class="form-select" required>
+                    <option value="STRICTLY_CONFIDENTIAL" selected>Strictly Confidential — Executive Board Only</option>
+                    <option value="CONFIDENTIAL_FINANCE">Confidential — Finance Management</option>
+                    <option value="INTERNAL_USE">Internal Use Only</option>
+                  </select>
+                </div>
+
+                <button id="cfoSubmitBtn" type="button" class="cfo-submit-btn">
+                  <i class="fas fa-lock"></i> Submit Report for Ingestion
+                </button>
+              </form>
+            </div>
+
+          </div>
+
+          <!-- PRE-FLIGHT VALIDATION CHECKS CARD -->
+          <div id="validationCard" class="validation-card">
+            <h2 class="cfo-section-title">
+              <i class="fas fa-clipboard-check"></i> Automated Pre-flight Data Integrity Checks
+            </h2>
+            <p class="cfo-section-desc">Real-time schema and financial balance verification powered by FCMB Data Science.</p>
+
+            <div class="validation-list">
+              <div class="val-item">
+                <div class="val-icon pass"><i class="fas fa-check"></i></div>
+                <div>
+                  <div class="val-label">IFRS &amp; CBN Schema</div>
+                  <div class="val-sub">Template structure verified</div>
+                </div>
+              </div>
+
+              <div class="val-item">
+                <div class="val-icon pass"><i class="fas fa-check"></i></div>
+                <div>
+                  <div class="val-label">Currency &amp; FX Parity</div>
+                  <div class="val-sub">NGN Base matched</div>
+                </div>
+              </div>
+
+              <div class="val-item">
+                <div class="val-icon pass"><i class="fas fa-check"></i></div>
+                <div>
+                  <div class="val-label">Balance Sheet Equation</div>
+                  <div class="val-sub">Assets = Liabilities + Equity</div>
+                </div>
+              </div>
+
+              <div class="val-item">
+                <div class="val-icon pass"><i class="fas fa-check"></i></div>
+                <div>
+                  <div class="val-label">CFO Digital Sign-off</div>
+                  <div class="val-sub">Security key validated</div>
+                </div>
+              </div>
+            </div>
+          </div>
 
         </section>
       </main>
