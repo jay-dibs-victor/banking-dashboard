@@ -214,7 +214,6 @@
        40m — Full CSS Styling Pass
        ============================================= */
 
-    /* --- Form control inputs --- */
     .form-control {
       height: 40px;
       border: 1px solid var(--border);
@@ -237,7 +236,6 @@
       outline: none;
     }
 
-    /* Bootstrap was-validated states */
     .was-validated .form-control:invalid {
       border-color: #e74c3c;
       box-shadow: 0 0 0 0.12rem rgba(231, 76, 60, 0.12);
@@ -247,7 +245,6 @@
       border-color: #27ae60;
     }
 
-    /* --- Password toggle button --- */
     .toggle-password {
       position: absolute;
       right: 12px;
@@ -268,13 +265,11 @@
       color: var(--brand);
     }
 
-    /* --- Forgot password link hover --- */
     .forgot-link:hover {
       color: var(--brand-dark);
       text-decoration: underline;
     }
 
-    /* --- Login submit button --- */
     .btn-login {
       width: 100%;
       height: 42px;
@@ -308,7 +303,6 @@
       transform: none;
     }
 
-    /* Profile icon — subtle pulse on load */
     @keyframes iconPop {
       0%   { transform: scale(0.85); opacity: 0; }
       70%  { transform: scale(1.06); }
@@ -319,7 +313,24 @@
       animation: iconPop 0.4s ease forwards;
     }
 
-    /* --- Responsive breakpoints --- */
+    /* =============================================
+       50m — JS-driven state classes
+       ============================================= */
+
+    /* Shake animation for invalid submit attempt */
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%       { transform: translateX(-6px); }
+      40%       { transform: translateX(6px); }
+      60%       { transform: translateX(-4px); }
+      80%       { transform: translateX(4px); }
+    }
+
+    .shake {
+      animation: shake 0.4s ease;
+    }
+
+    /* Responsive */
     @media (max-width: 576px) {
       .brand       { padding-top: 25px; }
       .login-area  { padding-top: 120px; padding-bottom: 50px; }
@@ -424,4 +435,116 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+  <!-- =============================================
+       50m — FCMBLogin Namespaced JS Module
+       ============================================= -->
+  <script>
+    var FCMBLogin = (function () {
+      'use strict';
+
+      /* --- Private DOM cache --- */
+      var DOM = {
+        form:     null,
+        email:    null,
+        password: null,
+        toggle:   null,
+        forgot:   null,
+        button:   null
+      };
+
+      /* --- Private helpers --- */
+
+      /**
+       * Shake the login card to signal invalid submission.
+       * Uses the .shake CSS animation class.
+       */
+      function shakeCard() {
+        var card = document.querySelector('.login-card');
+        card.classList.remove('shake');
+        // Force reflow to restart animation
+        void card.offsetWidth;
+        card.classList.add('shake');
+        card.addEventListener('animationend', function () {
+          card.classList.remove('shake');
+        }, { once: true });
+      }
+
+      /**
+       * Toggle password field visibility.
+       * Swaps input type and fa-eye / fa-eye-slash icon.
+       */
+      function handleTogglePassword() {
+        var isHidden = DOM.password.type === 'password';
+        DOM.password.type = isHidden ? 'text' : 'password';
+
+        DOM.toggle.setAttribute(
+          'aria-label',
+          isHidden ? 'Hide password' : 'Show password'
+        );
+
+        DOM.toggle.innerHTML = isHidden
+          ? '<i class="fas fa-eye-slash"></i>'
+          : '<i class="fas fa-eye"></i>';
+      }
+
+      /**
+       * Handle form submission.
+       * Shows inline Bootstrap validation errors on invalid fields.
+       * On valid form, disables button and shows a spinner.
+       */
+      function handleSubmit(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (!DOM.form.checkValidity()) {
+          DOM.form.classList.add('was-validated');
+          shakeCard();
+          return;
+        }
+
+        // Valid — show spinner state
+        DOM.button.disabled = true;
+        DOM.button.innerHTML =
+          '<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>' +
+          'Signing in…';
+
+        // Simulate auth handshake — replace with real API call
+        setTimeout(function () {
+          DOM.button.disabled = false;
+          DOM.button.textContent = 'Login';
+          alert('Connect this form to your authentication endpoint.');
+        }, 700);
+      }
+
+      /**
+       * Handle "Forgot password?" click.
+       * Replace alert() with a modal or redirect as needed.
+       */
+      function handleForgot(event) {
+        event.preventDefault();
+        alert('Connect this link to your password recovery flow.');
+      }
+
+      /* --- Public init --- */
+      function init() {
+        DOM.form     = document.getElementById('loginForm');
+        DOM.email    = document.getElementById('email');
+        DOM.password = document.getElementById('password');
+        DOM.toggle   = document.getElementById('togglePassword');
+        DOM.forgot   = document.getElementById('forgotPassword');
+        DOM.button   = document.getElementById('loginButton');
+
+        DOM.toggle.addEventListener('click',  handleTogglePassword);
+        DOM.form.addEventListener('submit',   handleSubmit);
+        DOM.forgot.addEventListener('click',  handleForgot);
+      }
+
+      /* Expose only the init method */
+      return { init: init };
+    }());
+
+    /* Boot on DOM ready */
+    document.addEventListener('DOMContentLoaded', FCMBLogin.init);
+  </script>
+</body>
 </html>
