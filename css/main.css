@@ -12,9 +12,9 @@
 
 @import url('variables.css');
 @import url('base.css');
+@import url('layout.css');
+@import url('components.css');
 
-/* Layout & component partials added in subsequent branches */
-/* @import url('layout.css');     — feat/arch-02 */
-/* @import url('components.css'); — feat/arch-02 */
+/* Page-level partials added in subsequent branches */
 /* @import url('pages/dashboard.css'); — feat/dash2-01 */
 /* @import url('pages/login.css');     — feat/arch-06 */
