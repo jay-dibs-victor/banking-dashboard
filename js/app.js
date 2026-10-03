@@ -161,10 +161,42 @@
       });
     });
 
-    /* AI tabs */
-    U.qsa('.ai-tab').forEach(function (tab) {
+    /* Popover Date Trigger Toggle for dashboard.html */
+    var dateTrig = U.qs('#dateTrigger');
+    var datePick = U.qs('#datePicker');
+    if (dateTrig && datePick) {
+      dateTrig.addEventListener('click', function (e) {
+        e.stopPropagation();
+        datePick.classList.toggle('show');
+      });
+      document.addEventListener('click', function () {
+        datePick.classList.remove('show');
+      });
+      datePick.addEventListener('click', function (e) {
+        e.stopPropagation();
+      });
+    }
+
+    /* Date selection inside popover */
+    U.qsa('#datePicker td:not(.muted)').forEach(function (td) {
+      td.addEventListener('click', function () {
+        U.qsa('#datePicker td').forEach(function (t) {
+          t.classList.remove('sel');
+          t.classList.remove('selected');
+        });
+        td.classList.add('sel');
+        var label = U.qs('#dateLabel');
+        if (label) {
+          label.textContent = 'Sep ' + td.textContent.trim() + ', 2026';
+        }
+        if (datePick) datePick.classList.remove('show');
+      });
+    });
+
+    /* AI tabs (.tab or .ai-tab) */
+    U.qsa('.tab, .ai-tab').forEach(function (tab) {
       tab.addEventListener('click', function () {
-        U.qsa('.ai-tab').forEach(function (t) { t.classList.remove('active'); });
+        U.qsa('.tab, .ai-tab').forEach(function (t) { t.classList.remove('active'); });
         tab.classList.add('active');
       });
     });
