@@ -313,23 +313,75 @@
     });
   });
 
+  /* ── SPA Engine Integration ───────────────────────────── */
+  function initSPA(options) {
+    if (!FCMB.Router) {
+      console.warn('[FCMB SPA] Router module (js/modules/Router.js) not loaded.');
+      return;
+    }
+
+    options = options || {};
+    var container = options.container || '#mainContent';
+
+    /* Register SPA Routes */
+    FCMB.Router.registerRoute('#/dashboard', {
+      name: 'DashboardView',
+      title: 'FCMB Executive Dashboard',
+      containerSelector: container,
+      template: function () {
+        return document.querySelector('#tpl-dashboard') ? document.querySelector('#tpl-dashboard').innerHTML : '<div>Dashboard View</div>';
+      },
+      afterMount: function () {
+        var bootFns = _pages['dashboard'] || [];
+        bootFns.forEach(function (fn) { fn(); });
+      }
+    });
+
+    FCMB.Router.registerRoute('#/cfo-upload', {
+      name: 'CFOUploadView',
+      title: 'FCMB CFO Financial Upload Portal',
+      containerSelector: container,
+      template: function () {
+        return document.querySelector('#tpl-cfo-upload') ? document.querySelector('#tpl-cfo-upload').innerHTML : '<div>CFO Upload View</div>';
+      },
+      afterMount: function () {
+        var bootFns = _pages['cfo-upload'] || [];
+        bootFns.forEach(function (fn) { fn(); });
+      }
+    });
+
+    /* Init Router Engine */
+    FCMB.Router.init({
+      defaultRoute: options.defaultRoute || '#/dashboard',
+      container: container
+    });
+  }
+
   /* ── DOMContentLoaded — run matching page boots ─────────── */
   document.addEventListener('DOMContentLoaded', function () {
     var page = document.body.dataset.page || '';
-    var boots = _pages[page] || [];
+    var mode = document.body.dataset.mode || '';
 
-    boots.forEach(function (fn) {
-      try {
-        fn();
-      } catch (err) {
-        if (typeof console !== 'undefined') {
-          console.error('[FCMB] Boot error on page "' + page + '":', err);
+    if (mode === 'spa') {
+      initSPA();
+    } else {
+      var boots = _pages[page] || [];
+      boots.forEach(function (fn) {
+        try {
+          fn();
+        } catch (err) {
+          if (typeof console !== 'undefined') {
+            console.error('[FCMB] Boot error on page "' + page + '":', err);
+          }
         }
-      }
-    });
+      });
+    }
   });
 
-  /* ── Expose register so external files can extend ───────── */
-  FCMB.App = { register: register };
+  /* ── Expose register & initSPA so external files can extend ────── */
+  FCMB.App = {
+    register: register,
+    initSPA: initSPA
+  };
 
 }(window.FCMB));
