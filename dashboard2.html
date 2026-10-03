@@ -185,9 +185,214 @@
         </div>
       </section>
 
-      <!-- Main sections filled in next branch (feat/dash2-03) -->
+      <!-- Main sections -->
       <main class="content" id="mainContent">
-        <!-- applications, AI, reports, utilities, CTA → feat/dash2-03 -->
+
+        <!-- ── Stats row ─────────────────────────────────── -->
+        <div class="stats-grid section">
+          <div class="stat-card">
+            <div class="stat-icon" style="background:#edf7f2;color:var(--green);">
+              <i class="fas fa-database"></i>
+            </div>
+            <div>
+              <div class="stat-value">142</div>
+              <div class="stat-label">Active Models</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background:#edf1fb;color:var(--blue);">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <div>
+              <div class="stat-value">98.4%</div>
+              <div class="stat-label">Pipeline Uptime</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background:#fdf3f3;color:var(--red);">
+              <i class="fas fa-exclamation-circle"></i>
+            </div>
+            <div>
+              <div class="stat-value">3</div>
+              <div class="stat-label">Alerts Today</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background:#fdf8ec;color:var(--yellow);">
+              <i class="fas fa-users"></i>
+            </div>
+            <div>
+              <div class="stat-value">56</div>
+              <div class="stat-label">Active Users</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Applications grid ──────────────────────────── -->
+        <section class="section" id="applications">
+          <div class="section-header">
+            <span class="section-title">Applications</span>
+            <a href="#" class="section-link">View all <i class="fas fa-chevron-right" style="font-size:9px;"></i></a>
+          </div>
+          <div class="apps-grid">
+            <div class="app-card">
+              <div class="app-card-icon"><i class="fas fa-project-diagram"></i></div>
+              <div class="app-card-name">Model Registry</div>
+              <div class="app-card-desc">Manage and version all ML models</div>
+            </div>
+            <div class="app-card">
+              <div class="app-card-icon"><i class="fas fa-stream"></i></div>
+              <div class="app-card-name">Pipeline Monitor</div>
+              <div class="app-card-desc">Track ETL pipeline health in real time</div>
+            </div>
+            <div class="app-card">
+              <div class="app-card-icon"><i class="fas fa-table"></i></div>
+              <div class="app-card-name">Data Catalogue</div>
+              <div class="app-card-desc">Browse and govern data assets</div>
+            </div>
+            <div class="app-card">
+              <div class="app-card-icon"><i class="fas fa-bell"></i></div>
+              <div class="app-card-name">Alert Centre</div>
+              <div class="app-card-desc">Configure and receive smart alerts</div>
+            </div>
+            <div class="app-card">
+              <div class="app-card-icon"><i class="fas fa-robot"></i></div>
+              <div class="app-card-name">AutoML Studio</div>
+              <div class="app-card-desc">Low-code model training interface</div>
+            </div>
+            <div class="app-card">
+              <div class="app-card-icon"><i class="fas fa-lock"></i></div>
+              <div class="app-card-name">Access Control</div>
+              <div class="app-card-desc">Manage roles and permissions</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── AI Products ────────────────────────────────── -->
+        <section class="section" id="models">
+          <div class="section-header">
+            <span class="section-title">AI Products</span>
+            <a href="#" class="section-link">View all <i class="fas fa-chevron-right" style="font-size:9px;"></i></a>
+          </div>
+          <div class="ai-grid">
+            <div class="app-card">
+              <div class="app-card-icon" style="background:#edf7f2;color:var(--green);">
+                <i class="fas fa-credit-card"></i>
+              </div>
+              <div class="app-card-name">Fraud Sentinel</div>
+              <div class="app-card-desc">Real-time transaction fraud detection</div>
+              <span class="badge-pill badge-green">Live</span>
+            </div>
+            <div class="app-card">
+              <div class="app-card-icon" style="background:#edf1fb;color:var(--blue);">
+                <i class="fas fa-user-check"></i>
+              </div>
+              <div class="app-card-name">Credit Scorer</div>
+              <div class="app-card-desc">Automated credit risk assessment engine</div>
+              <span class="badge-pill badge-blue">Beta</span>
+            </div>
+            <div class="app-card">
+              <div class="app-card-icon" style="background:#fdf8ec;color:var(--yellow);">
+                <i class="fas fa-comments"></i>
+              </div>
+              <div class="app-card-name">NLP Insights</div>
+              <div class="app-card-desc">Sentiment analysis on customer feedback</div>
+              <span class="badge-pill badge-yellow">Staging</span>
+            </div>
+            <div class="app-card">
+              <div class="app-card-icon" style="background:#fdf3f3;color:var(--red);">
+                <i class="fas fa-shield-alt"></i>
+              </div>
+              <div class="app-card-name">AML Monitor</div>
+              <div class="app-card-desc">Anti-money laundering pattern detection</div>
+              <span class="badge-pill badge-green">Live</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── Reports ────────────────────────────────────── -->
+        <section class="section" id="reports">
+          <div class="section-header">
+            <span class="section-title">Reports</span>
+            <a href="#" class="section-link">View all <i class="fas fa-chevron-right" style="font-size:9px;"></i></a>
+          </div>
+          <div class="reports-grid">
+            <div class="card">
+              <div class="card-title"><i class="fas fa-file-alt" style="color:var(--purple);margin-right:7px;"></i>Monthly Performance</div>
+              <div class="card-meta">Generated Oct 01, 2026</div>
+              <div style="margin-top:10px;">
+                <span class="badge-pill badge-green">Ready</span>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title"><i class="fas fa-file-alt" style="color:var(--purple);margin-right:7px;"></i>Risk Exposure Summary</div>
+              <div class="card-meta">Generated Sep 28, 2026</div>
+              <div style="margin-top:10px;">
+                <span class="badge-pill badge-green">Ready</span>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title"><i class="fas fa-file-alt" style="color:var(--purple);margin-right:7px;"></i>Model Drift Analysis</div>
+              <div class="card-meta">Generated Sep 25, 2026</div>
+              <div style="margin-top:10px;">
+                <span class="badge-pill badge-yellow">Pending</span>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title"><i class="fas fa-file-alt" style="color:var(--purple);margin-right:7px;"></i>Data Quality Audit</div>
+              <div class="card-meta">Generated Sep 20, 2026</div>
+              <div style="margin-top:10px;">
+                <span class="badge-pill badge-green">Ready</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── Utility Monitors ───────────────────────────── -->
+        <section class="section" id="utilities">
+          <div class="section-header">
+            <span class="section-title">Utility Monitors</span>
+          </div>
+          <div class="util-grid">
+            <div class="util-card">
+              <div class="util-label">CPU Usage</div>
+              <div class="util-value">67%</div>
+              <div class="util-bar-track"><div class="util-bar-fill" style="width:67%;background:var(--green);"></div></div>
+            </div>
+            <div class="util-card">
+              <div class="util-label">Memory</div>
+              <div class="util-value">81%</div>
+              <div class="util-bar-track"><div class="util-bar-fill" style="width:81%;background:var(--yellow);"></div></div>
+            </div>
+            <div class="util-card">
+              <div class="util-label">Storage</div>
+              <div class="util-value">44%</div>
+              <div class="util-bar-track"><div class="util-bar-fill" style="width:44%;background:var(--blue);"></div></div>
+            </div>
+            <div class="util-card">
+              <div class="util-label">API Response</div>
+              <div class="util-value">128ms</div>
+              <div class="util-bar-track"><div class="util-bar-fill" style="width:30%;background:var(--mint);"></div></div>
+            </div>
+            <div class="util-card">
+              <div class="util-label">Model Queue</div>
+              <div class="util-value">12</div>
+              <div class="util-bar-track"><div class="util-bar-fill" style="width:55%;background:var(--purple);"></div></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── CTA ───────────────────────────────────────── -->
+        <section class="section cta-section">
+          <div>
+            <div class="cta-title">Ready to deploy a new model?</div>
+            <div class="cta-sub">Push to production with one click through the model registry.</div>
+          </div>
+          <button class="btn-purple">
+            <i class="fas fa-rocket"></i> Open Model Registry
+          </button>
+        </section>
+
       </main>
 
       <footer class="footer">
@@ -200,6 +405,65 @@
 
   <!-- Mobile overlay -->
   <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+  <!-- Access modal -->
+  <div class="modal fade" id="accessModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content custom-modal">
+        <div class="modal-header">
+          <div>
+            <span class="modal-kicker">Access Control</span>
+            <h5 class="modal-title">Manage Access</h5>
+          </div>
+          <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <p class="text-muted text-sm" style="margin-bottom:16px;">
+            Assign access to dashboard areas for authorised users.
+          </p>
+          <div class="access-row">
+            <div><strong>Dashboard</strong><small>Overview and statistics</small></div>
+            <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+          </div>
+          <div class="access-row">
+            <div><strong>AI Models</strong><small>Model registry and monitoring</small></div>
+            <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+          </div>
+          <div class="access-row">
+            <div><strong>Reports</strong><small>Analytics and report exports</small></div>
+            <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+          </div>
+          <div class="access-row">
+            <div><strong>Utilities</strong><small>System monitors and tools</small></div>
+            <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-light" data-dismiss="modal">Cancel</button>
+          <button id="saveAccess" class="btn-purple">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detail modal -->
+  <div class="modal fade" id="detailModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content custom-modal">
+        <div class="modal-header">
+          <div>
+            <span class="modal-kicker">Dashboard Item</span>
+            <h5 id="detailTitle" class="modal-title">Details</h5>
+          </div>
+          <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+        </div>
+        <div id="detailBody" class="modal-body"></div>
+        <div class="modal-footer">
+          <button class="btn-purple" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- JS dependencies (in load order) -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
