@@ -100,10 +100,101 @@
       </nav>
     </aside>
 
-    <!-- Main content placeholder — filled in next branches -->
+    <!-- ═══════════════════════════════════════
+         MAIN CONTENT
+         ═══════════════════════════════════════ -->
     <div id="main" class="main">
-      <!-- topbar, hero, sections → feat/dash2-02, feat/dash2-03 -->
-    </div>
+
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <!-- Mobile hamburger -->
+        <button id="mobileSidebarOpen" class="mobile-menu-btn" aria-label="Open navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Search input with embedded date trigger -->
+        <div class="topbar-search">
+          <button id="dateButton" class="date-trigger" aria-label="Open date picker">
+            <i class="fas fa-calendar-alt"></i>
+            <span id="currentDate">Oct 03, 2026</span>
+          </button>
+          <input
+            type="text"
+            id="globalSearch"
+            class="search-input"
+            placeholder="Search tools, reports, models…"
+            autocomplete="off"
+            aria-label="Global search"
+          >
+          <button id="searchButton" class="topbar-btn" aria-label="Search">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+
+        <!-- Search results panel -->
+        <div id="searchResults" class="search-results" role="listbox" aria-label="Search results"></div>
+
+        <!-- Date picker popover -->
+        <div id="datePicker" class="date-picker" role="dialog" aria-label="Date picker">
+          <div class="calendar-header">
+            <button id="calPrev" class="calendar-nav" aria-label="Previous month">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <span id="calendarTitle" class="calendar-title">October 2026</span>
+            <button id="calNext" class="calendar-nav" aria-label="Next month">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+          <div id="calendarDays" class="calendar-days"></div>
+          <div style="display:flex;gap:8px;margin-top:12px;">
+            <button id="todayButton" class="btn-light-purple" style="flex:1;font-size:11px;">Today</button>
+            <button id="closeDate" class="btn-light-purple" style="flex:1;font-size:11px;">Close</button>
+          </div>
+        </div>
+
+        <!-- Right icon cluster -->
+        <div class="topbar-actions">
+          <button id="themeToggle" class="topbar-btn" aria-label="Switch to dark mode">
+            <i class="fas fa-moon"></i>
+          </button>
+          <button class="topbar-btn" data-toggle="modal" data-target="#accessModal" aria-label="Manage access">
+            <i class="fas fa-user-shield"></i>
+          </button>
+          <div class="topbar-avatar" aria-label="User avatar" title="Data Science">DS</div>
+        </div>
+      </header>
+
+      <!-- HERO -->
+      <section class="hero" id="dashboard" aria-label="Dashboard hero">
+        <p class="hero-kicker">FCMB Data Science Group</p>
+        <h1 class="hero-title">
+          Intelligence &amp; <span>Executive</span><br>Analytics Dashboard
+        </h1>
+        <p class="hero-subtitle">
+          The intelligence layer behind all data-driven decisions at FCMB.
+          Access enterprise tools, AI models, performance monitors, and insights.
+        </p>
+
+        <!-- Quick access chips -->
+        <div class="hero-chips">
+          <button class="chip"><i class="fas fa-chart-bar"></i> Reports</button>
+          <button class="chip"><i class="fas fa-brain"></i> AI Models</button>
+          <button class="chip"><i class="fas fa-tachometer-alt"></i> Performance</button>
+          <button class="chip"><i class="fas fa-user-shield"></i> Manage Access</button>
+          <button class="chip"><i class="fas fa-tools"></i> Utilities</button>
+        </div>
+      </section>
+
+      <!-- Main sections filled in next branch (feat/dash2-03) -->
+      <main class="content" id="mainContent">
+        <!-- applications, AI, reports, utilities, CTA → feat/dash2-03 -->
+      </main>
+
+      <footer class="footer">
+        Designed &amp; Developed by <a href="#">Data Science Group</a>
+      </footer>
+
+    </div><!-- /#main -->
 
   </div><!-- /.app-shell -->
 

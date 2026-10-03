@@ -14,7 +14,6 @@
 @import url('base.css');
 @import url('layout.css');
 @import url('components.css');
+@import url('pages/dashboard.css');
 
-/* Page-level partials added in subsequent branches */
-/* @import url('pages/dashboard.css'); — feat/dash2-01 */
-/* @import url('pages/login.css');     — feat/arch-06 */
+/* @import url('pages/login.css'); — feat/arch-06 */
