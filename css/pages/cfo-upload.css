@@ -1,93 +1,88 @@
 /* ============================================================
    css/pages/cfo-upload.css
    FCMB CFO Financial Performance Upload — Page Scoped Styles
-   Uses design tokens from variables.css
+   Uses standard design tokens from variables.css (Light Theme)
+   Scoped to [data-page="cfo-upload"]
    ============================================================ */
 
-/* ── Hero / Executive Banner ────────────────────────────── */
-.cfo-hero {
-  background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple) 50%, var(--purple-mid) 100%);
-  color: #ffffff;
-  padding: 32px 36px;
+/* ── Hero / Executive Header Banner (Light Design System) ─ */
+[data-page="cfo-upload"] .cfo-hero {
+  background: var(--bg);
+  color: var(--text);
+  padding: 28px 32px;
   border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--purple);
   margin-bottom: 28px;
   position: relative;
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-sm);
 }
 
-.cfo-hero::after {
-  content: "";
-  position: absolute;
-  top: -40%;
-  right: -10%;
-  width: 380px;
-  height: 380px;
-  background: radial-gradient(circle, rgba(234, 199, 78, 0.18) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.cfo-hero-badge {
+[data-page="cfo-upload"] .cfo-hero-badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: var(--purple-pale);
+  border: 1px solid rgba(93, 33, 133, 0.15);
   padding: 4px 12px;
   border-radius: 20px;
   font-size: var(--text-xs);
-  font-weight: 600;
-  color: var(--accent-gold);
+  font-weight: 700;
+  color: var(--purple);
   margin-bottom: 12px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
-.cfo-hero h1 {
+[data-page="cfo-upload"] .cfo-hero h1 {
   font-size: var(--text-2xl);
   font-weight: 800;
   margin: 0 0 8px;
   letter-spacing: -0.02em;
-  color: #ffffff;
+  color: var(--purple-dark);
 }
 
-.cfo-hero p {
+[data-page="cfo-upload"] .cfo-hero p {
   font-size: var(--text-base);
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--text-muted);
   margin: 0 0 20px;
-  max-width: 680px;
-  line-height: 1.5;
+  max-width: 720px;
+  line-height: 1.6;
 }
 
-.cfo-hero-stats {
+[data-page="cfo-upload"] .cfo-hero-stats {
   display: flex;
-  gap: 24px;
+  gap: 20px;
   flex-wrap: wrap;
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-top: 1px solid var(--border);
   padding-top: 18px;
 }
 
-.cfo-stat-item {
+[data-page="cfo-upload"] .cfo-stat-item {
   display: flex;
   flex-direction: column;
+  background: var(--bg-soft);
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
 }
 
-.cfo-stat-label {
+[data-page="cfo-upload"] .cfo-stat-label {
   font-size: 10px;
-  color: rgba(255, 255, 255, 0.65);
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.06em;
+  font-weight: 600;
 }
 
-.cfo-stat-val {
-  font-size: var(--text-md);
+[data-page="cfo-upload"] .cfo-stat-val {
+  font-size: var(--text-sm);
   font-weight: 700;
-  color: #ffffff;
+  color: var(--purple-dark);
 }
 
 /* ── Main Layout Grid ──────────────────────────────────── */
-.cfo-grid {
+[data-page="cfo-upload"] .cfo-grid {
   display: grid;
   grid-template-columns: 1.4fr 1fr;
   gap: 24px;
@@ -95,13 +90,13 @@
 }
 
 @media (max-width: 1024px) {
-  .cfo-grid {
+  [data-page="cfo-upload"] .cfo-grid {
     grid-template-columns: 1fr;
   }
 }
 
 /* ── Dropzone Card ─────────────────────────────────────── */
-.dropzone-card {
+[data-page="cfo-upload"] .dropzone-card {
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
@@ -109,7 +104,7 @@
   box-shadow: var(--shadow-sm);
 }
 
-.cfo-section-title {
+[data-page="cfo-upload"] .cfo-section-title {
   font-size: var(--text-lg);
   font-weight: 700;
   color: var(--purple-dark);
@@ -119,19 +114,19 @@
   gap: 10px;
 }
 
-.cfo-section-title i {
+[data-page="cfo-upload"] .cfo-section-title i {
   color: var(--purple);
 }
 
-.cfo-section-desc {
+[data-page="cfo-upload"] .cfo-section-desc {
   font-size: var(--text-xs);
   color: var(--text-muted);
   margin-bottom: 20px;
 }
 
-.upload-dropzone {
-  border: 2px dashed #c9b5dc;
-  background: var(--purple-wash);
+[data-page="cfo-upload"] .upload-dropzone {
+  border: 2px dashed #dcd6e4;
+  background: #faf8fc;
   border-radius: var(--radius);
   padding: 36px 20px;
   text-align: center;
@@ -140,15 +135,15 @@
   position: relative;
 }
 
-.upload-dropzone:hover,
-.upload-dropzone.drag-over {
+[data-page="cfo-upload"] .upload-dropzone:hover,
+[data-page="cfo-upload"] .upload-dropzone.drag-over {
   border-color: var(--purple);
   background: var(--purple-pale);
   transform: translateY(-2px);
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-sm);
 }
 
-.dropzone-icon {
+[data-page="cfo-upload"] .dropzone-icon {
   width: 56px;
   height: 56px;
   border-radius: 50%;
@@ -163,44 +158,44 @@
   transition: transform var(--ease);
 }
 
-.upload-dropzone:hover .dropzone-icon {
-  transform: scale(1.1);
+[data-page="cfo-upload"] .upload-dropzone:hover .dropzone-icon {
+  transform: scale(1.08);
   background: var(--purple);
   color: #ffffff;
 }
 
-.dropzone-prompt {
+[data-page="cfo-upload"] .dropzone-prompt {
   font-size: var(--text-md);
-  font-weight: 600;
+  font-weight: 700;
   color: var(--purple-dark);
   margin-bottom: 6px;
 }
 
-.dropzone-hint {
+[data-page="cfo-upload"] .dropzone-hint {
   font-size: var(--text-xs);
   color: var(--text-muted);
   margin-bottom: 16px;
 }
 
-.file-types-chips {
+[data-page="cfo-upload"] .file-types-chips {
   display: flex;
   justify-content: center;
   gap: 8px;
   flex-wrap: wrap;
 }
 
-.file-chip {
+[data-page="cfo-upload"] .file-chip {
   background: var(--bg);
   border: 1px solid var(--border);
-  padding: 3px 10px;
-  border-radius: 12px;
-  font-size: 10px;
+  padding: 4px 12px;
+  border-radius: 14px;
+  font-size: 11px;
   font-weight: 600;
   color: var(--purple-mid);
 }
 
 /* ── Selected File Preview Card ────────────────────────── */
-.file-preview-box {
+[data-page="cfo-upload"] .file-preview-box {
   display: none;
   margin-top: 18px;
   padding: 16px;
@@ -211,11 +206,11 @@
   gap: 14px;
 }
 
-.file-preview-box.active {
+[data-page="cfo-upload"] .file-preview-box.active {
   display: flex;
 }
 
-.preview-icon {
+[data-page="cfo-upload"] .preview-icon {
   width: 42px;
   height: 42px;
   background: #eaf6f0;
@@ -227,23 +222,23 @@
   font-size: 20px;
 }
 
-.preview-details {
+[data-page="cfo-upload"] .preview-details {
   flex: 1;
 }
 
-.preview-filename {
+[data-page="cfo-upload"] .preview-filename {
   font-size: var(--text-sm);
   font-weight: 700;
   color: var(--text);
   margin-bottom: 2px;
 }
 
-.preview-meta {
+[data-page="cfo-upload"] .preview-meta {
   font-size: var(--text-xs);
   color: var(--text-muted);
 }
 
-.remove-file-btn {
+[data-page="cfo-upload"] .remove-file-btn {
   border: none;
   background: transparent;
   color: var(--red);
@@ -253,12 +248,12 @@
   border-radius: 50%;
 }
 
-.remove-file-btn:hover {
+[data-page="cfo-upload"] .remove-file-btn:hover {
   background: #fde8e8;
 }
 
 /* ── Parameters Form ───────────────────────────────────── */
-.cfo-form-card {
+[data-page="cfo-upload"] .cfo-form-card {
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
@@ -268,11 +263,11 @@
   flex-direction: column;
 }
 
-.form-group {
+[data-page="cfo-upload"] .form-group {
   margin-bottom: 16px;
 }
 
-.form-group label {
+[data-page="cfo-upload"] .form-group label {
   display: block;
   font-size: var(--text-xs);
   font-weight: 700;
@@ -282,8 +277,8 @@
   letter-spacing: 0.04em;
 }
 
-.form-select,
-.form-control {
+[data-page="cfo-upload"] .form-select,
+[data-page="cfo-upload"] .form-control {
   width: 100%;
   height: 38px;
   padding: 0 12px;
@@ -296,13 +291,13 @@
   transition: border-color var(--ease);
 }
 
-.form-select:focus,
-.form-control:focus {
+[data-page="cfo-upload"] .form-select:focus,
+[data-page="cfo-upload"] .form-control:focus {
   border-color: var(--purple);
   box-shadow: 0 0 0 3px rgba(93, 33, 133, 0.1);
 }
 
-.cfo-submit-btn {
+[data-page="cfo-upload"] .cfo-submit-btn {
   margin-top: auto;
   width: 100%;
   height: 44px;
@@ -321,14 +316,14 @@
   box-shadow: var(--shadow-sm);
 }
 
-.cfo-submit-btn:hover {
+[data-page="cfo-upload"] .cfo-submit-btn:hover {
   background: var(--purple-dark);
   box-shadow: var(--shadow);
   transform: translateY(-1px);
 }
 
 /* ── Validation Checks Box ─────────────────────────────── */
-.validation-card {
+[data-page="cfo-upload"] .validation-card {
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
@@ -337,14 +332,14 @@
   box-shadow: var(--shadow-sm);
 }
 
-.validation-list {
+[data-page="cfo-upload"] .validation-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 14px;
   margin-top: 16px;
 }
 
-.val-item {
+[data-page="cfo-upload"] .val-item {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -354,7 +349,7 @@
   border: 1px solid var(--border);
 }
 
-.val-icon {
+[data-page="cfo-upload"] .val-icon {
   width: 28px;
   height: 28px;
   border-radius: 50%;
@@ -365,29 +360,29 @@
   flex-shrink: 0;
 }
 
-.val-icon.pass {
+[data-page="cfo-upload"] .val-icon.pass {
   background: #eaf6f0;
   color: var(--green);
 }
 
-.val-icon.warn {
+[data-page="cfo-upload"] .val-icon.warn {
   background: #fdf6e7;
   color: var(--yellow);
 }
 
-.val-label {
+[data-page="cfo-upload"] .val-label {
   font-size: var(--text-xs);
   font-weight: 600;
   color: var(--text);
 }
 
-.val-sub {
+[data-page="cfo-upload"] .val-sub {
   font-size: 10px;
   color: var(--text-muted);
 }
 
 /* ── Recent CFO Reports Table ───────────────────────────── */
-.status-pill {
+[data-page="cfo-upload"] .status-pill {
   display: inline-flex;
   align-items: center;
   gap: 5px;
@@ -398,17 +393,17 @@
   text-transform: uppercase;
 }
 
-.status-passed {
+[data-page="cfo-upload"] .status-passed {
   background: #eaf6f0;
   color: var(--green);
 }
 
-.status-review {
+[data-page="cfo-upload"] .status-review {
   background: #fdf6e7;
   color: #b8860b;
 }
 
-.status-confidential {
+[data-page="cfo-upload"] .status-confidential {
   background: var(--purple-pale);
   color: var(--purple);
 }
