@@ -21,36 +21,26 @@
         rel="stylesheet">
 
   <style>
-    /* =============================================
-       10m — CSS Design Tokens & Reset
-       ============================================= */
-
+    /* ==============================================
+       Design Tokens & Reset
+       ============================================== */
     :root {
-      --brand:        #5d2185;
-      --brand-dark:   #481767;
-      --brand-light:  #ddd0ea;
-      --brand-glow:   rgba(93, 33, 133, 0.12);
-      --accent-gold:  #f0c94a;
-      --text:         #24364b;
-      --text-muted:   #8290a5;
-      --border:       #cfd6df;
-      --bg:           #ffffff;
-      --card-shadow:  0 8px 32px rgba(93, 33, 133, 0.10);
-      --radius:       6px;
-      --transition:   0.18s ease;
-      --font-body:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      --font-serif:   Georgia, 'Times New Roman', serif;
+      --brand:       #5d2185;
+      --brand-dark:  #481767;
+      --brand-light: #ddd0ea;
+      --brand-glow:  rgba(93, 33, 133, 0.12);
+      --accent-gold: #f0c94a;
+      --text:        #24364b;
+      --border:      #cfd6df;
+      --bg:          #ffffff;
+      --radius:      6px;
+      --ease:        0.22s ease;
+      --font-body:   'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-serif:  Georgia, 'Times New Roman', serif;
     }
 
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html, body {
-      height: 100%;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
 
     body {
       background: var(--bg);
@@ -59,16 +49,16 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* =============================================
-       20m — Page Layout & Brand Header
-       ============================================= */
-
+    /* ==============================================
+       Page Layout
+       ============================================== */
     .login-page {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
 
+    /* Brand header */
     .brand {
       padding-top: 40px;
       text-align: center;
@@ -99,9 +89,7 @@
     .brand-mark::after {
       content: '';
       position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      left: 0; right: 0; bottom: 0;
       height: 6px;
       background: var(--accent-gold);
     }
@@ -115,6 +103,7 @@
       letter-spacing: 0;
     }
 
+    /* Centre the card */
     .login-area {
       flex: 1;
       display: flex;
@@ -128,22 +117,7 @@
       max-width: 352px;
     }
 
-    .footer {
-      padding: 0 20px 42px;
-      text-align: center;
-      color: #425873;
-      font-family: var(--font-serif);
-      font-size: 14px;
-    }
-
-    .footer strong {
-      font-weight: 700;
-    }
-
-    /* =============================================
-       30m — Form Structure Styles
-       ============================================= */
-
+    /* Profile avatar */
     .profile-icon {
       width: 64px;
       height: 64px;
@@ -158,6 +132,14 @@
       font-size: 29px;
     }
 
+    @keyframes iconPop {
+      0%   { transform: scale(0.85); opacity: 0; }
+      70%  { transform: scale(1.06); }
+      100% { transform: scale(1);    opacity: 1; }
+    }
+    .profile-icon { animation: iconPop 0.4s ease forwards; }
+
+    /* Card title & subtitle */
     .login-title {
       margin: 0 0 8px;
       text-align: center;
@@ -172,11 +154,13 @@
       text-align: center;
       color: #8190a5;
       font-size: 14px;
+      transition: opacity var(--ease);
     }
 
-    .form-group {
-      margin-bottom: 19px;
-    }
+    /* ==============================================
+       Form Fields
+       ============================================== */
+    .form-group { margin-bottom: 19px; }
 
     .form-label {
       display: block;
@@ -185,34 +169,6 @@
       font-size: 14px;
       font-weight: 600;
     }
-
-    .password-wrap {
-      position: relative;
-    }
-
-    .password-wrap .form-control {
-      padding-right: 42px;
-    }
-
-    .forgot-row {
-      text-align: right;
-      margin-top: -8px;
-      margin-bottom: 19px;
-    }
-
-    .forgot-link {
-      color: var(--brand);
-      font-size: 12px;
-      text-decoration: none;
-    }
-
-    .invalid-feedback {
-      font-size: 12px;
-    }
-
-    /* =============================================
-       40m — Full CSS Styling Pass
-       ============================================= */
 
     .form-control {
       height: 40px;
@@ -223,12 +179,11 @@
       font-size: 14px;
       font-family: var(--font-body);
       box-shadow: none;
-      transition: border-color var(--transition), box-shadow var(--transition);
+      transition: border-color var(--ease), box-shadow var(--ease);
+      width: 100%;
     }
 
-    .form-control::placeholder {
-      color: #a7b0bd;
-    }
+    .form-control::placeholder { color: #a7b0bd; }
 
     .form-control:focus {
       border-color: var(--brand);
@@ -238,12 +193,16 @@
 
     .was-validated .form-control:invalid {
       border-color: #e74c3c;
-      box-shadow: 0 0 0 0.12rem rgba(231, 76, 60, 0.12);
+      box-shadow: 0 0 0 0.12rem rgba(231,76,60,.12);
     }
 
-    .was-validated .form-control:valid {
-      border-color: #27ae60;
-    }
+    .was-validated .form-control:valid { border-color: #27ae60; }
+
+    .invalid-feedback { font-size: 12px; }
+
+    /* Password wrapper with eye toggle */
+    .password-wrap { position: relative; }
+    .password-wrap .form-control { padding-right: 42px; }
 
     .toggle-password {
       position: absolute;
@@ -255,21 +214,48 @@
       color: #8995a7;
       padding: 0;
       cursor: pointer;
-      transition: color var(--transition);
+      transition: color var(--ease);
       line-height: 1;
     }
-
     .toggle-password:hover,
-    .toggle-password:focus {
-      outline: none;
+    .toggle-password:focus { outline: none; color: var(--brand); }
+
+    /* Forgot password */
+    .forgot-row {
+      text-align: right;
+      margin-top: -8px;
+      margin-bottom: 19px;
+    }
+
+    .forgot-link {
       color: var(--brand);
+      font-size: 12px;
+      text-decoration: none;
+    }
+    .forgot-link:hover { color: var(--brand-dark); text-decoration: underline; }
+
+    /* ==============================================
+       Two-Step: password group slide-in
+       ============================================== */
+
+    /* Password group is hidden on step 1 */
+    .password-group {
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      /* smooth reveal */
+      transition: max-height 0.38s ease, opacity 0.28s ease 0.08s;
     }
 
-    .forgot-link:hover {
-      color: var(--brand-dark);
-      text-decoration: underline;
+    /* When JS adds .visible — slide open */
+    .password-group.visible {
+      max-height: 200px;   /* generous upper bound */
+      opacity: 1;
     }
 
+    /* ==============================================
+       Submit Button
+       ============================================== */
     .btn-login {
       width: 100%;
       height: 42px;
@@ -281,61 +267,49 @@
       font-weight: 600;
       font-family: var(--font-body);
       letter-spacing: 0.2px;
-      box-shadow: 0 3px 7px rgba(65, 26, 91, 0.23);
-      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      box-shadow: 0 3px 7px rgba(65,26,91,.23);
+      transition: background var(--ease), transform var(--ease), box-shadow var(--ease);
       cursor: pointer;
     }
 
     .btn-login:hover {
       background: var(--brand-dark);
       color: #fff;
-      box-shadow: 0 5px 14px rgba(65, 26, 91, 0.30);
+      box-shadow: 0 5px 14px rgba(65,26,91,.30);
     }
 
-    .btn-login:active {
-      transform: translateY(1px);
-      box-shadow: 0 2px 5px rgba(65, 26, 91, 0.18);
-    }
+    .btn-login:active  { transform: translateY(1px); }
+    .btn-login:disabled { opacity: .75; cursor: not-allowed; transform: none; }
 
-    .btn-login:disabled {
-      opacity: 0.75;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    @keyframes iconPop {
-      0%   { transform: scale(0.85); opacity: 0; }
-      70%  { transform: scale(1.06); }
-      100% { transform: scale(1);    opacity: 1; }
-    }
-
-    .profile-icon {
-      animation: iconPop 0.4s ease forwards;
-    }
-
-    /* =============================================
-       50m — JS-driven state classes
-       ============================================= */
-
-    /* Shake animation for invalid submit attempt */
+    /* ==============================================
+       Shake on invalid
+       ============================================== */
     @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      20%       { transform: translateX(-6px); }
-      40%       { transform: translateX(6px); }
-      60%       { transform: translateX(-4px); }
-      80%       { transform: translateX(4px); }
+      0%,100% { transform: translateX(0); }
+      20%      { transform: translateX(-6px); }
+      40%      { transform: translateX(6px); }
+      60%      { transform: translateX(-4px); }
+      80%      { transform: translateX(4px); }
     }
+    .shake { animation: shake 0.4s ease; }
 
-    .shake {
-      animation: shake 0.4s ease;
+    /* ==============================================
+       Footer
+       ============================================== */
+    .footer {
+      padding: 0 20px 42px;
+      text-align: center;
+      color: #425873;
+      font-family: var(--font-serif);
+      font-size: 14px;
     }
+    .footer strong { font-weight: 700; }
 
-    /* Responsive */
     @media (max-width: 576px) {
-      .brand       { padding-top: 25px; }
-      .login-area  { padding-top: 120px; padding-bottom: 50px; }
-      .login-card  { max-width: 360px; }
-      .footer      { padding-bottom: 25px; }
+      .brand      { padding-top: 25px; }
+      .login-area { padding-top: 120px; padding-bottom: 50px; }
+      .login-card { max-width: 360px; }
+      .footer     { padding-bottom: 25px; }
     }
   </style>
 </head>
@@ -354,18 +328,20 @@
       <div class="login-card">
 
         <h1 class="login-title">Sign In</h1>
-        <p class="login-subtitle">Enter your work email and password to proceed</p>
+        <p class="login-subtitle" id="loginSubtitle">
+          Enter your work email to continue
+        </p>
 
         <!-- Profile avatar -->
         <div class="profile-icon" aria-hidden="true">
           <i class="fas fa-user"></i>
         </div>
 
-        <!-- Login form -->
+        <!-- Two-step login form -->
         <form id="loginForm" novalidate>
 
-          <!-- Email field -->
-          <div class="form-group">
+          <!-- STEP 1 — Email only -->
+          <div class="form-group" id="emailGroup">
             <label class="form-label" for="email">Work Email</label>
             <input
               type="email"
@@ -381,42 +357,42 @@
             </div>
           </div>
 
-          <!-- Password field with toggle -->
-          <div class="form-group">
-            <label class="form-label" for="password">Password</label>
-            <div class="password-wrap">
-              <input
-                type="password"
-                class="form-control"
-                id="password"
-                name="password"
-                placeholder="Enter your password"
-                autocomplete="current-password"
-                minlength="6"
-                required
-              >
-              <button
-                type="button"
-                class="toggle-password"
-                id="togglePassword"
-                aria-label="Show password"
-              >
-                <i class="fas fa-eye"></i>
-              </button>
+          <!-- STEP 2 — Password (hidden until Continue is clicked) -->
+          <div class="password-group" id="passwordGroup">
+            <div class="form-group">
+              <label class="form-label" for="password">Password</label>
+              <div class="password-wrap">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  name="password"
+                  placeholder="Enter your password"
+                  autocomplete="current-password"
+                  minlength="6"
+                >
+                <button
+                  type="button"
+                  class="toggle-password"
+                  id="togglePassword"
+                  aria-label="Show password"
+                >
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+              <div class="invalid-feedback">
+                Please enter your password (min 6 characters).
+              </div>
             </div>
-            <div class="invalid-feedback">
-              Please enter your password.
+
+            <div class="forgot-row">
+              <a href="#" class="forgot-link" id="forgotPassword">Forgot password?</a>
             </div>
           </div>
 
-          <!-- Forgot password -->
-          <div class="forgot-row">
-            <a href="#" class="forgot-link" id="forgotPassword">Forgot password?</a>
-          </div>
-
-          <!-- Submit -->
+          <!-- CTA button — label changes per step -->
           <button type="submit" class="btn btn-login" id="loginButton">
-            Login
+            Continue
           </button>
 
         </form>
@@ -435,80 +411,101 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-  <!-- =============================================
-       50m — FCMBLogin Namespaced JS Module
-       ============================================= -->
+  <!-- FCMBLogin — Two-Step Flow Module -->
   <script>
     var FCMBLogin = (function () {
       'use strict';
 
-      /* --- Private DOM cache --- */
-      var DOM = {
-        form:     null,
-        email:    null,
-        password: null,
-        toggle:   null,
-        forgot:   null,
-        button:   null
-      };
+      /* Current step: 1 = email, 2 = password */
+      var step = 1;
 
-      /* --- Private helpers --- */
+      /* DOM cache */
+      var DOM = {};
 
-      /**
-       * Shake the login card to signal invalid submission.
-       * Uses the .shake CSS animation class.
-       */
+      /* ---- Helpers ---- */
+
       function shakeCard() {
         var card = document.querySelector('.login-card');
         card.classList.remove('shake');
-        // Force reflow to restart animation
-        void card.offsetWidth;
+        void card.offsetWidth; /* reflow to restart animation */
         card.classList.add('shake');
         card.addEventListener('animationend', function () {
           card.classList.remove('shake');
         }, { once: true });
       }
 
+      function isValidEmail(value) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+      }
+
+      /* ---- Step transitions ---- */
+
       /**
-       * Toggle password field visibility.
-       * Swaps input type and fa-eye / fa-eye-slash icon.
+       * Step 1 → Step 2
+       * Reveals the password field and renames the button to "Login".
        */
+      function revealPasswordStep() {
+        step = 2;
+
+        /* Slide in password group */
+        DOM.passwordGroup.classList.add('visible');
+
+        /* Update button label */
+        DOM.button.textContent = 'Login';
+
+        /* Update subtitle hint */
+        DOM.subtitle.textContent = 'Enter your password to sign in';
+
+        /* Make password field required now that it is visible */
+        DOM.password.setAttribute('required', '');
+        DOM.password.setAttribute('minlength', '6');
+
+        /* Focus password after transition */
+        setTimeout(function () { DOM.password.focus(); }, 360);
+      }
+
+      /* ---- Event handlers ---- */
+
       function handleTogglePassword() {
-        var isHidden = DOM.password.type === 'password';
-        DOM.password.type = isHidden ? 'text' : 'password';
-
-        DOM.toggle.setAttribute(
-          'aria-label',
-          isHidden ? 'Hide password' : 'Show password'
-        );
-
-        DOM.toggle.innerHTML = isHidden
+        var hidden = DOM.password.type === 'password';
+        DOM.password.type = hidden ? 'text' : 'password';
+        DOM.toggle.setAttribute('aria-label', hidden ? 'Hide password' : 'Show password');
+        DOM.toggle.innerHTML = hidden
           ? '<i class="fas fa-eye-slash"></i>'
           : '<i class="fas fa-eye"></i>';
       }
 
-      /**
-       * Handle form submission.
-       * Shows inline Bootstrap validation errors on invalid fields.
-       * On valid form, disables button and shows a spinner.
-       */
       function handleSubmit(event) {
         event.preventDefault();
         event.stopPropagation();
 
+        /* ---- Step 1: validate email, reveal password ---- */
+        if (step === 1) {
+          if (!isValidEmail(DOM.email.value)) {
+            DOM.form.classList.add('was-validated');
+            shakeCard();
+            return;
+          }
+          /* Email valid — move to step 2 */
+          DOM.form.classList.remove('was-validated');
+          revealPasswordStep();
+          return;
+        }
+
+        /* ---- Step 2: validate password, submit ---- */
         if (!DOM.form.checkValidity()) {
           DOM.form.classList.add('was-validated');
           shakeCard();
           return;
         }
 
-        // Valid — show spinner state
+        /* Both fields valid — trigger auth */
         DOM.button.disabled = true;
         DOM.button.innerHTML =
           '<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>' +
           'Signing in…';
 
-        // Simulate auth handshake — replace with real API call
+        /* Replace with real API call */
         setTimeout(function () {
           DOM.button.disabled = false;
           DOM.button.textContent = 'Login';
@@ -516,34 +513,39 @@
         }, 700);
       }
 
-      /**
-       * Handle "Forgot password?" click.
-       * Replace alert() with a modal or redirect as needed.
-       */
       function handleForgot(event) {
         event.preventDefault();
         alert('Connect this link to your password recovery flow.');
       }
 
-      /* --- Public init --- */
-      function init() {
-        DOM.form     = document.getElementById('loginForm');
-        DOM.email    = document.getElementById('email');
-        DOM.password = document.getElementById('password');
-        DOM.toggle   = document.getElementById('togglePassword');
-        DOM.forgot   = document.getElementById('forgotPassword');
-        DOM.button   = document.getElementById('loginButton');
+      /* ---- Init ---- */
 
-        DOM.toggle.addEventListener('click',  handleTogglePassword);
-        DOM.form.addEventListener('submit',   handleSubmit);
-        DOM.forgot.addEventListener('click',  handleForgot);
+      function init() {
+        DOM.form          = document.getElementById('loginForm');
+        DOM.email         = document.getElementById('email');
+        DOM.password      = document.getElementById('password');
+        DOM.toggle        = document.getElementById('togglePassword');
+        DOM.forgot        = document.getElementById('forgotPassword');
+        DOM.button        = document.getElementById('loginButton');
+        DOM.passwordGroup = document.getElementById('passwordGroup');
+        DOM.subtitle      = document.getElementById('loginSubtitle');
+
+        DOM.toggle.addEventListener('click', handleTogglePassword);
+        DOM.forgot.addEventListener('click', handleForgot);
+        DOM.form.addEventListener('submit',  handleSubmit);
+
+        /* Auto-advance to step 2 when user presses Enter on email field */
+        DOM.email.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' && step === 1) {
+            e.preventDefault();
+            DOM.form.dispatchEvent(new Event('submit', { cancelable: true }));
+          }
+        });
       }
 
-      /* Expose only the init method */
       return { init: init };
     }());
 
-    /* Boot on DOM ready */
     document.addEventListener('DOMContentLoaded', FCMBLogin.init);
   </script>
 </body>
