@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="FCMB Data Science Group — Executive Analytics Dashboard">
+  <meta name="theme-color" content="#5d2185">
+  <title>FCMB Data Science Group | Executive Dashboard</title>
+
+  <!-- External dependencies -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Shared CSS barrel (imports variables → base → layout → components) -->
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body data-page="dashboard">
+
+  <div class="app-shell">
+
+    <!-- ═══════════════════════════════════════
+         SIDEBAR
+         ═══════════════════════════════════════ -->
+    <aside id="sidebar" class="sidebar">
+
+      <!-- Sidebar top control bar -->
+      <div class="sidebar-top">
+        <button id="collapseSidebar" class="sidebar-collapse" aria-label="Toggle sidebar">
+          <i class="fas fa-exchange-alt"></i>
+        </button>
+        <button id="mobileSidebarClose" class="mobile-sidebar-close" aria-label="Close sidebar">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <!-- Brand -->
+      <div class="sidebar-brand">
+        <div class="fcmb-mark">FCMB</div>
+        <div class="brand-copy">
+          <strong>DATA SCIENCE</strong>
+          <strong>DASHBOARD</strong>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="side-nav" aria-label="Main navigation">
+
+        <div class="nav-section-title">Overview</div>
+
+        <a href="#dashboard" class="side-link active" data-section="dashboard" aria-current="page">
+          <span class="side-icon"><i class="fas fa-th-large"></i></span>
+          <span class="side-text">Dashboard</span>
+        </a>
+
+        <div class="nav-section-title">Analytics</div>
+
+        <a href="#reports" class="side-link" data-section="reports">
+          <span class="side-icon"><i class="fas fa-chart-bar"></i></span>
+          <span class="side-text">Reports</span>
+        </a>
+
+        <a href="#models" class="side-link" data-section="models">
+          <span class="side-icon"><i class="fas fa-brain"></i></span>
+          <span class="side-text">AI Models</span>
+        </a>
+
+        <a href="#performance" class="side-link" data-section="performance">
+          <span class="side-icon"><i class="fas fa-tachometer-alt"></i></span>
+          <span class="side-text">Performance</span>
+        </a>
+
+        <div class="nav-section-title">Tools</div>
+
+        <a href="#applications" class="side-link" data-section="applications">
+          <span class="side-icon"><i class="fas fa-th"></i></span>
+          <span class="side-text">Applications</span>
+        </a>
+
+        <a href="#utilities" class="side-link" data-section="utilities">
+          <span class="side-icon"><i class="fas fa-tools"></i></span>
+          <span class="side-text">Utilities</span>
+        </a>
+
+        <div class="nav-section-title">Admin</div>
+
+        <a href="#access" class="side-link" data-section="access">
+          <span class="side-icon"><i class="fas fa-user-shield"></i></span>
+          <span class="side-text">Access Control</span>
+        </a>
+
+        <a href="#settings" class="side-link" data-section="settings">
+          <span class="side-icon"><i class="fas fa-cog"></i></span>
+          <span class="side-text">Settings</span>
+        </a>
+
+      </nav>
+    </aside>
+
+    <!-- Main content placeholder — filled in next branches -->
+    <div id="main" class="main">
+      <!-- topbar, hero, sections → feat/dash2-02, feat/dash2-03 -->
+    </div>
+
+  </div><!-- /.app-shell -->
+
+  <!-- Mobile overlay -->
+  <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+  <!-- JS dependencies (in load order) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- FCMB JS architecture (namespace → utils → modules → app) -->
+  <script src="js/namespace.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/modules/Sidebar.js"></script>
+  <script src="js/modules/Calendar.js"></script>
+  <script src="js/modules/Search.js"></script>
+  <script src="js/modules/Theme.js"></script>
+  <script src="js/modules/Login.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
