@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FCMB Group Legal Dashboard — Executive portal for document management, secretariat records, litigation tracking, and company folder management.">
+  <title>FCMB Group Legal Dashboard</title>
+
+  <!-- Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <!-- FCMB Design System Barrel -->
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body data-page="dashboard">
+
+  <div class="app-shell">
+
+    <!-- ── SIDEBAR ────────────────────────────────────────────── -->
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-top">
+        <button id="collapseSidebar" class="sidebar-collapse" aria-label="Toggle sidebar">
+          <i class="fas fa-exchange-alt"></i>
+        </button>
+        <button id="mobileSidebarClose" class="mobile-sidebar-close" aria-label="Close sidebar">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="brand">
+        <div class="fcmb-mark">FCMB</div>
+        <div class="brand-copy">
+          <strong>GROUP LEGAL</strong>
+          <strong>DASHBOARD</strong>
+        </div>
+      </div>
+
+      <nav class="side-nav">
+        <div class="nav-section-title">OVERVIEW</div>
+
+        <a href="#dashboard" class="side-link active" data-section="dashboard">
+          <span class="side-icon"><i class="fas fa-th-large"></i></span>
+          <span class="side-text">Dashboard</span>
+        </a>
+
+        <div class="nav-section-title">LEGAL MODULES</div>
+
+        <a href="#secretariat" class="side-link" data-section="secretariat">
+          <span class="side-icon"><i class="fas fa-landmark"></i></span>
+          <span class="side-text">Secretariat</span>
+        </a>
+
+        <a href="#documentation" class="side-link" data-section="documentation">
+          <span class="side-icon"><i class="far fa-file-alt"></i></span>
+          <span class="side-text">Documentation</span>
+        </a>
+
+        <a href="#litigation" class="side-link" data-section="litigation">
+          <span class="side-icon"><i class="fas fa-shield-alt"></i></span>
+          <span class="side-text">Litigation Dashboard</span>
+        </a>
+
+        <a href="#perfection" class="side-link" data-section="perfection">
+          <span class="side-icon"><i class="fas fa-chart-line"></i></span>
+          <span class="side-text">Perfection Tracker</span>
+        </a>
+
+        <a href="#transactions" class="side-link" data-section="transactions">
+          <span class="side-icon"><i class="far fa-file-video"></i></span>
+          <span class="side-text">Transaction Review</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- ── MAIN CONTENT AREA ─────────────────────────────────── -->
+    <div id="main" class="main">
+
+      <!-- TOPBAR HEADER -->
+      <header class="topbar">
+        <button id="mobileSidebarOpen" class="mobile-menu-btn" aria-label="Open navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="topbar-date">
+          <button id="dateButton" class="date-button" type="button">
+            <span id="currentDate">Oct 2, 2026</span>
+          </button>
+
+          <!-- Date Picker Popover -->
+          <div id="datePicker" class="date-picker">
+            <div class="calendar-head">
+              <button class="calendar-nav" data-calendar="prev" aria-label="Previous month"><i class="fas fa-chevron-left"></i></button>
+              <strong id="calendarTitle">October 2026</strong>
+              <button class="calendar-nav" data-calendar="next" aria-label="Next month"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="calendar-week">
+              <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span>
+              <span>Thu</span><span>Fri</span><span>Sat</span>
+            </div>
+            <div id="calendarDays" class="calendar-days"></div>
+            <div class="calendar-footer">
+              <button id="todayButton" class="btn btn-sm btn-light">Today</button>
+              <button id="closeDate" class="btn btn-sm btn-purple">Done</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Global Search Bar -->
+        <div class="topbar-search">
+          <input id="globalSearch" type="text" placeholder="Search Anything..." autocomplete="off" aria-label="Search">
+          <button id="searchButton" type="button" aria-label="Submit Search"><i class="fas fa-search"></i></button>
+          <div id="searchResults" class="search-results"></div>
+        </div>
+
+        <!-- Topbar Actions & User Profile -->
+        <div class="topbar-actions">
+          <button class="top-action flag-action" title="Workspace" aria-label="Workspace">
+            <span class="workspace-dot"></span>
+            <i class="fas fa-external-link-alt"></i>
+          </button>
+          <button id="themeToggle" class="top-action" title="Toggle theme" aria-label="Toggle Theme">
+            <i class="far fa-moon"></i>
+          </button>
+          <button class="top-action" title="Settings" aria-label="Settings">
+            <i class="fas fa-cog"></i>
+          </button>
+          <div class="profile">
+            <div class="profile-avatar"><i class="fas fa-user"></i></div>
+            <span>Remidious Enefola</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+        </div>
+      </header>
+
+      <!-- PAGE SECTION -->
+      <main class="content">
+        <section id="dashboard" class="page-section">
+
+          <!-- PAGE HEADING -->
+          <div class="page-heading">
+            <div>
+              <h1>Dashboard</h1>
+              <p>Document folders grouped by company</p>
+            </div>
+            <button id="manageAccess" class="btn btn-purple btn-manage">
+              Manage Access
+            </button>
+          </div>
+
+          <!-- METRICS GRID -->
+          <div class="metrics-grid">
+            <div class="metric-card metric-purple">
+              <div class="metric-label">Companies</div>
+              <div class="metric-number">10</div>
+              <div class="metric-note">102 Active Folders</div>
+            </div>
+
+            <div class="metric-card metric-green">
+              <div class="metric-label">Documents</div>
+              <div class="metric-number">291</div>
+              <div class="metric-note">Across all folders</div>
+            </div>
+
+            <div class="metric-card metric-blue">
+              <div class="metric-label">Secretariat</div>
+              <div class="metric-number">2</div>
+              <div class="metric-note">Meetings processed this month</div>
+            </div>
+
+            <div class="metric-card metric-red">
+              <div class="metric-label">Litigation Dashboard</div>
+              <div class="metric-number">0</div>
+              <div class="metric-note">Require attention</div>
+            </div>
+
+            <div class="metric-card metric-yellow">
+              <div class="metric-label">Perfection Tracker</div>
+              <div class="metric-number">0</div>
+              <div class="metric-note">Items in review</div>
+            </div>
+
+            <div class="metric-card metric-pink">
+              <div class="metric-label">Transaction review</div>
+              <div class="metric-number">0</div>
+              <div class="metric-note">Awaiting review</div>
+            </div>
+
+            <div class="metric-card metric-mint">
+              <div class="metric-label">Documentation</div>
+              <div class="metric-number">0</div>
+              <div class="metric-note">Processed this month</div>
+            </div>
+          </div>
+
+          <!-- COMPANIES PANEL -->
+          <section class="panel companies-panel">
+            <div class="panel-heading">
+              <div class="panel-title-wrap">
+                <h2>Companies</h2>
+                <span class="count-pill">102 folders</span>
+              </div>
+              <button class="text-button" data-view="companies">View all <i class="fas fa-chevron-right"></i></button>
+            </div>
+
+            <div class="companies-grid">
+              <button class="company-card" data-company="CSL">
+                <span class="folder-icon"><i class="far fa-folder"></i></span>
+                <span>
+                  <strong>CSL</strong>
+                  <small>1 folders&nbsp; | &nbsp;2 docs</small>
+                </span>
+              </button>
+
+              <button class="company-card" data-company="FCMB Limited">
+                <span class="folder-icon"><i class="far fa-folder"></i></span>
+                <span>
+                  <strong>FCMB Limited</strong>
+                  <small>1 folders&nbsp; | &nbsp;1 docs</small>
+                </span>
+              </button>
+
+              <button class="company-card" data-company="New Dashboard">
+                <span class="folder-icon"><i class="far fa-folder"></i></span>
+                <span>
+                  <strong>New Dashboard</strong>
+                  <small>0 folders&nbsp; | &nbsp;0 docs</small>
+                </span>
+              </button>
+
+              <button class="company-card" data-company="Tena Test">
+                <span class="folder-icon"><i class="far fa-folder"></i></span>
+                <span>
+                  <strong>Tena Test</strong>
+                  <small>1 folders&nbsp; | &nbsp;2 docs</small>
+                </span>
+              </button>
+            </div>
+          </section>
+
+          <!-- RECENT UPLOADS PANEL -->
+          <section class="panel uploads-panel">
+            <div class="panel-heading">
+              <h2>Recent uploads</h2>
+              <button class="text-button" data-view="uploads">View all <i class="fas fa-chevron-right"></i></button>
+            </div>
+
+            <div class="table-responsive">
+              <table id="uploadsTable" class="table uploads-table">
+                <thead>
+                  <tr>
+                    <th>File name</th>
+                    <th>Type</th>
+                    <th>Created at</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-search="NOTICE OF EMC MEETING FRIDAY 2ND OCTOBER">
+                    <td>
+                      <button class="file-link">
+                        <span class="file-icon"><i class="far fa-file-alt"></i></span>
+                        <span>NOTICE OF EMC MEETING - FRIDAY 2ND OCTO...</span>
+                      </button>
+                    </td>
+                    <td>Recording</td>
+                    <td>02 Oct 2026</td>
+                  </tr>
+                  <tr data-search="NOTICE OF EMC MEETING THURSDAY 24TH SEPTEMBER">
+                    <td>
+                      <button class="file-link">
+                        <span class="file-icon"><i class="far fa-file-alt"></i></span>
+                        <span>NOTICE OF EMC MEETING - THURSDAY 24TH S...</span>
+                      </button>
+                    </td>
+                    <td>Recording</td>
+                    <td>24 Sept 2026</td>
+                  </tr>
+                  <tr data-search="NOTICE OF MEETING BOARD GOVERNANCE">
+                    <td>
+                      <button class="file-link">
+                        <span class="file-icon"><i class="far fa-file-alt"></i></span>
+                        <span>NOTICE OF MEETING - BOARD GOVERNANCE, R...</span>
+                      </button>
+                    </td>
+                    <td>Recording</td>
+                    <td>15 Sept 2026</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div id="emptyUploads" class="empty-state d-none">
+              No uploads match your search.
+            </div>
+          </section>
+
+        </section>
+      </main>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        Designed &amp; Developed by <a href="#">Data Science Group</a>
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- MOBILE OVERLAY -->
+  <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+  <!-- ACCESS CONTROL MODAL -->
+  <div class="modal fade" id="accessModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content custom-modal">
+        <div class="modal-header">
+          <div>
+            <span class="modal-kicker">ACCESS CONTROL</span>
+            <h5 class="modal-title">Manage Access</h5>
+          </div>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p class="modal-description">Choose the legal dashboard area and assign access to authorized users.</p>
+
+          <div class="access-row">
+            <div>
+              <strong>Dashboard</strong>
+              <small>Overview and company folders</small>
+            </div>
+            <label class="switch">
+              <input type="checkbox" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="access-row">
+            <div>
+              <strong>Secretariat</strong>
+              <small>Meetings and secretariat records</small>
+            </div>
+            <label class="switch">
+              <input type="checkbox" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="access-row">
+            <div>
+              <strong>Documentation</strong>
+              <small>Legal document repository</small>
+            </div>
+            <label class="switch">
+              <input type="checkbox">
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="access-row">
+            <div>
+              <strong>Litigation Dashboard</strong>
+              <small>Cases requiring attention</small>
+            </div>
+            <label class="switch">
+              <input type="checkbox">
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="access-row">
+            <div>
+              <strong>Transaction Review</strong>
+              <small>Transactions awaiting review</small>
+            </div>
+            <label class="switch">
+              <input type="checkbox">
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-light" data-dismiss="modal">Cancel</button>
+          <button id="saveAccess" class="btn btn-purple">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DETAIL MODAL -->
+  <div class="modal fade" id="detailModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content custom-modal">
+        <div class="modal-header">
+          <div>
+            <span class="modal-kicker">DASHBOARD ITEM</span>
+            <h5 id="detailTitle" class="modal-title">Details</h5>
+          </div>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div id="detailBody" class="modal-body"></div>
+        <div class="modal-footer">
+          <button class="btn btn-purple" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── JS MODULE ARCHITECTURE (FCMB Namespace Stack) ───────── -->
+  <script src="js/namespace.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/modules/Sidebar.js"></script>
+  <script src="js/modules/Calendar.js"></script>
+  <script src="js/modules/Search.js"></script>
+  <script src="js/modules/Theme.js"></script>
+  <script src="js/modules/Modal.js"></script>
+  <script src="js/modules/Login.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

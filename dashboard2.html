@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="FCMB Data Science Group — Executive Analytics Dashboard">
+  <meta name="theme-color" content="#5d2185">
+  <title>FCMB Data Science Group | Executive Dashboard</title>
+
+  <!-- External dependencies -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Shared CSS barrel (imports variables → base → layout → components) -->
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body data-page="dashboard">
+
+  <div class="app-shell">
+
+    <!-- ═══════════════════════════════════════
+         SIDEBAR
+         ═══════════════════════════════════════ -->
+    <aside id="sidebar" class="sidebar">
+
+      <!-- Sidebar top control bar -->
+      <div class="sidebar-top">
+        <button id="collapseSidebar" class="sidebar-collapse" aria-label="Toggle sidebar">
+          <i class="fas fa-exchange-alt"></i>
+        </button>
+        <button id="mobileSidebarClose" class="mobile-sidebar-close" aria-label="Close sidebar">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <!-- Brand -->
+      <div class="sidebar-brand">
+        <div class="fcmb-mark">FCMB</div>
+        <div class="brand-copy">
+          <strong>DATA SCIENCE</strong>
+          <strong>DASHBOARD</strong>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="side-nav" aria-label="Main navigation">
+
+        <div class="nav-section-title">Overview</div>
+
+        <a href="#dashboard" class="side-link active" data-section="dashboard" aria-current="page">
+          <span class="side-icon"><i class="fas fa-th-large"></i></span>
+          <span class="side-text">Dashboard</span>
+        </a>
+
+        <div class="nav-section-title">Analytics</div>
+
+        <a href="#reports" class="side-link" data-section="reports">
+          <span class="side-icon"><i class="fas fa-chart-bar"></i></span>
+          <span class="side-text">Reports</span>
+        </a>
+
+        <a href="#models" class="side-link" data-section="models">
+          <span class="side-icon"><i class="fas fa-brain"></i></span>
+          <span class="side-text">AI Models</span>
+        </a>
+
+        <a href="#performance" class="side-link" data-section="performance">
+          <span class="side-icon"><i class="fas fa-tachometer-alt"></i></span>
+          <span class="side-text">Performance</span>
+        </a>
+
+        <div class="nav-section-title">Tools</div>
+
+        <a href="#applications" class="side-link" data-section="applications">
+          <span class="side-icon"><i class="fas fa-th"></i></span>
+          <span class="side-text">Applications</span>
+        </a>
+
+        <a href="#utilities" class="side-link" data-section="utilities">
+          <span class="side-icon"><i class="fas fa-tools"></i></span>
+          <span class="side-text">Utilities</span>
+        </a>
+
+        <div class="nav-section-title">Admin</div>
+
+        <a href="#access" class="side-link" data-section="access">
+          <span class="side-icon"><i class="fas fa-user-shield"></i></span>
+          <span class="side-text">Access Control</span>
+        </a>
+
+        <a href="#settings" class="side-link" data-section="settings">
+          <span class="side-icon"><i class="fas fa-cog"></i></span>
+          <span class="side-text">Settings</span>
+        </a>
+
+      </nav>
+    </aside>
+
+    <!-- ═══════════════════════════════════════
+         MAIN CONTENT
+         ═══════════════════════════════════════ -->
+    <div id="main" class="main">
+
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <!-- Mobile hamburger -->
+        <button id="mobileSidebarOpen" class="mobile-menu-btn" aria-label="Open navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Search input with embedded date trigger -->
+        <div class="topbar-search">
+          <button id="dateButton" class="date-trigger" aria-label="Open date picker">
+            <i class="fas fa-calendar-alt"></i>
+            <span id="currentDate">Oct 03, 2026</span>
+          </button>
+          <input
+            type="text"
+            id="globalSearch"
+            class="search-input"
+            placeholder="Search tools, reports, models…"
+            autocomplete="off"
+            aria-label="Global search"
+          >
+          <button id="searchButton" class="topbar-btn" aria-label="Search">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+
+        <!-- Search results panel -->
+        <div id="searchResults" class="search-results" role="listbox" aria-label="Search results"></div>
+
+        <!-- Date picker popover -->
+        <div id="datePicker" class="date-picker" role="dialog" aria-label="Date picker">
+          <div class="calendar-header">
+            <button id="calPrev" class="calendar-nav" aria-label="Previous month">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <span id="calendarTitle" class="calendar-title">October 2026</span>
+            <button id="calNext" class="calendar-nav" aria-label="Next month">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+          <div id="calendarDays" class="calendar-days"></div>
+          <div style="display:flex;gap:8px;margin-top:12px;">
+            <button id="todayButton" class="btn-light-purple" style="flex:1;font-size:11px;">Today</button>
+            <button id="closeDate" class="btn-light-purple" style="flex:1;font-size:11px;">Close</button>
+          </div>
+        </div>
+
+        <!-- Right icon cluster -->
+        <div class="topbar-actions">
+          <button id="themeToggle" class="topbar-btn" aria-label="Switch to dark mode">
+            <i class="fas fa-moon"></i>
+          </button>
+          <button class="topbar-btn" data-toggle="modal" data-target="#accessModal" aria-label="Manage access">
+            <i class="fas fa-user-shield"></i>
+          </button>
+          <div class="topbar-avatar" aria-label="User avatar" title="Data Science">DS</div>
+        </div>
+      </header>
+
+      <!-- HERO -->
+      <section class="hero" id="dashboard" aria-label="Dashboard hero">
+        <p class="hero-kicker">FCMB Data Science Group</p>
+        <h1 class="hero-title">
+          Intelligence &amp; <span>Executive</span><br>Analytics Dashboard
+        </h1>
+        <p class="hero-subtitle">
+          The intelligence layer behind all data-driven decisions at FCMB.
+          Access enterprise tools, AI models, performance monitors, and insights.
+        </p>
+
+        <!-- Quick access chips -->
+        <div class="hero-chips">
+          <button class="chip"><i class="fas fa-chart-bar"></i> Reports</button>
+          <button class="chip"><i class="fas fa-brain"></i> AI Models</button>
+          <button class="chip"><i class="fas fa-tachometer-alt"></i> Performance</button>
+          <button class="chip"><i class="fas fa-user-shield"></i> Manage Access</button>
+          <button class="chip"><i class="fas fa-tools"></i> Utilities</button>
+        </div>
+      </section>
+
+      <!-- Main sections -->
+      <main class="content" id="mainContent">
+
+        <!-- ── Stats row ─────────────────────────────────── -->
+        <div class="stats-grid section">
+          <div class="stat-card">
+            <div class="stat-icon" style="background:#edf7f2;color:var(--green);">
+              <i class="fas fa-database"></i>
+            </div>
+            <div>
+              <div class="stat-value">142</div>
+              <div class="stat-label">Active Models</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background:#edf1fb;color:var(--blue);">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <div>
+              <div class="stat-value">98.4%</div>
+              <div class="stat-label">Pipeline Uptime</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background:#fdf3f3;color:var(--red);">
+              <i class="fas fa-exclamation-circle"></i>
+            </div>
+            <div>
+              <div class="stat-value">3</div>
+              <div class="stat-label">Alerts Today</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background:#fdf8ec;color:var(--yellow);">
+              <i class="fas fa-users"></i>
+            </div>
+            <div>
+              <div class="stat-value">56</div>
+              <div class="stat-label">Active Users</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Applications grid ──────────────────────────── -->
+        <section class="section" id="applications">
+          <div class="section-header">
+            <span class="section-title">Applications</span>
+            <a href="#" class="section-link">View all <i class="fas fa-chevron-right" style="font-size:9px;"></i></a>
+          </div>
+          <div class="apps-grid">
+            <div class="app-card">
+              <div class="app-card-icon"><i class="fas fa-project-diagram"></i></div>
+              <div class="app-card-name">Model Registry</div>
+              <div class="app-card-desc">Manage and version all ML models</div>
+            </div>
+            <div class="app-card">
+              <div class="app-card-icon"><i class="fas fa-stream"></i></div>
+              <div class="app-card-name">Pipeline Monitor</div>
+              <div class="app-card-desc">Track ETL pipeline health in real time</div>
+            </div>
+            <div class="app-card">
+              <div class="app-card-icon"><i class="fas fa-table"></i></div>
+              <div class="app-card-name">Data Catalogue</div>
+              <div class="app-card-desc">Browse and govern data assets</div>
+            </div>
+            <div class="app-card">
+              <div class="app-card-icon"><i class="fas fa-bell"></i></div>
+              <div class="app-card-name">Alert Centre</div>
+              <div class="app-card-desc">Configure and receive smart alerts</div>
+            </div>
+            <div class="app-card">
+              <div class="app-card-icon"><i class="fas fa-robot"></i></div>
+              <div class="app-card-name">AutoML Studio</div>
+              <div class="app-card-desc">Low-code model training interface</div>
+            </div>
+            <div class="app-card">
+              <div class="app-card-icon"><i class="fas fa-lock"></i></div>
+              <div class="app-card-name">Access Control</div>
+              <div class="app-card-desc">Manage roles and permissions</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── AI Products ────────────────────────────────── -->
+        <section class="section" id="models">
+          <div class="section-header">
+            <span class="section-title">AI Products</span>
+            <a href="#" class="section-link">View all <i class="fas fa-chevron-right" style="font-size:9px;"></i></a>
+          </div>
+          <div class="ai-grid">
+            <div class="app-card">
+              <div class="app-card-icon" style="background:#edf7f2;color:var(--green);">
+                <i class="fas fa-credit-card"></i>
+              </div>
+              <div class="app-card-name">Fraud Sentinel</div>
+              <div class="app-card-desc">Real-time transaction fraud detection</div>
+              <span class="badge-pill badge-green">Live</span>
+            </div>
+            <div class="app-card">
+              <div class="app-card-icon" style="background:#edf1fb;color:var(--blue);">
+                <i class="fas fa-user-check"></i>
+              </div>
+              <div class="app-card-name">Credit Scorer</div>
+              <div class="app-card-desc">Automated credit risk assessment engine</div>
+              <span class="badge-pill badge-blue">Beta</span>
+            </div>
+            <div class="app-card">
+              <div class="app-card-icon" style="background:#fdf8ec;color:var(--yellow);">
+                <i class="fas fa-comments"></i>
+              </div>
+              <div class="app-card-name">NLP Insights</div>
+              <div class="app-card-desc">Sentiment analysis on customer feedback</div>
+              <span class="badge-pill badge-yellow">Staging</span>
+            </div>
+            <div class="app-card">
+              <div class="app-card-icon" style="background:#fdf3f3;color:var(--red);">
+                <i class="fas fa-shield-alt"></i>
+              </div>
+              <div class="app-card-name">AML Monitor</div>
+              <div class="app-card-desc">Anti-money laundering pattern detection</div>
+              <span class="badge-pill badge-green">Live</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── Reports ────────────────────────────────────── -->
+        <section class="section" id="reports">
+          <div class="section-header">
+            <span class="section-title">Reports</span>
+            <a href="#" class="section-link">View all <i class="fas fa-chevron-right" style="font-size:9px;"></i></a>
+          </div>
+          <div class="reports-grid">
+            <div class="card">
+              <div class="card-title"><i class="fas fa-file-alt" style="color:var(--purple);margin-right:7px;"></i>Monthly Performance</div>
+              <div class="card-meta">Generated Oct 01, 2026</div>
+              <div style="margin-top:10px;">
+                <span class="badge-pill badge-green">Ready</span>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title"><i class="fas fa-file-alt" style="color:var(--purple);margin-right:7px;"></i>Risk Exposure Summary</div>
+              <div class="card-meta">Generated Sep 28, 2026</div>
+              <div style="margin-top:10px;">
+                <span class="badge-pill badge-green">Ready</span>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title"><i class="fas fa-file-alt" style="color:var(--purple);margin-right:7px;"></i>Model Drift Analysis</div>
+              <div class="card-meta">Generated Sep 25, 2026</div>
+              <div style="margin-top:10px;">
+                <span class="badge-pill badge-yellow">Pending</span>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title"><i class="fas fa-file-alt" style="color:var(--purple);margin-right:7px;"></i>Data Quality Audit</div>
+              <div class="card-meta">Generated Sep 20, 2026</div>
+              <div style="margin-top:10px;">
+                <span class="badge-pill badge-green">Ready</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── Utility Monitors ───────────────────────────── -->
+        <section class="section" id="utilities">
+          <div class="section-header">
+            <span class="section-title">Utility Monitors</span>
+          </div>
+          <div class="util-grid">
+            <div class="util-card">
+              <div class="util-label">CPU Usage</div>
+              <div class="util-value">67%</div>
+              <div class="util-bar-track"><div class="util-bar-fill" style="width:67%;background:var(--green);"></div></div>
+            </div>
+            <div class="util-card">
+              <div class="util-label">Memory</div>
+              <div class="util-value">81%</div>
+              <div class="util-bar-track"><div class="util-bar-fill" style="width:81%;background:var(--yellow);"></div></div>
+            </div>
+            <div class="util-card">
+              <div class="util-label">Storage</div>
+              <div class="util-value">44%</div>
+              <div class="util-bar-track"><div class="util-bar-fill" style="width:44%;background:var(--blue);"></div></div>
+            </div>
+            <div class="util-card">
+              <div class="util-label">API Response</div>
+              <div class="util-value">128ms</div>
+              <div class="util-bar-track"><div class="util-bar-fill" style="width:30%;background:var(--mint);"></div></div>
+            </div>
+            <div class="util-card">
+              <div class="util-label">Model Queue</div>
+              <div class="util-value">12</div>
+              <div class="util-bar-track"><div class="util-bar-fill" style="width:55%;background:var(--purple);"></div></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── CTA ───────────────────────────────────────── -->
+        <section class="section cta-section">
+          <div>
+            <div class="cta-title">Ready to deploy a new model?</div>
+            <div class="cta-sub">Push to production with one click through the model registry.</div>
+          </div>
+          <button class="btn-purple">
+            <i class="fas fa-rocket"></i> Open Model Registry
+          </button>
+        </section>
+
+      </main>
+
+      <footer class="footer">
+        Designed &amp; Developed by <a href="#">Data Science Group</a>
+      </footer>
+
+    </div><!-- /#main -->
+
+  </div><!-- /.app-shell -->
+
+  <!-- Mobile overlay -->
+  <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+  <!-- Access modal -->
+  <div class="modal fade" id="accessModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content custom-modal">
+        <div class="modal-header">
+          <div>
+            <span class="modal-kicker">Access Control</span>
+            <h5 class="modal-title">Manage Access</h5>
+          </div>
+          <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <p class="text-muted text-sm" style="margin-bottom:16px;">
+            Assign access to dashboard areas for authorised users.
+          </p>
+          <div class="access-row">
+            <div><strong>Dashboard</strong><small>Overview and statistics</small></div>
+            <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+          </div>
+          <div class="access-row">
+            <div><strong>AI Models</strong><small>Model registry and monitoring</small></div>
+            <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+          </div>
+          <div class="access-row">
+            <div><strong>Reports</strong><small>Analytics and report exports</small></div>
+            <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+          </div>
+          <div class="access-row">
+            <div><strong>Utilities</strong><small>System monitors and tools</small></div>
+            <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-light" data-dismiss="modal">Cancel</button>
+          <button id="saveAccess" class="btn-purple">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detail modal -->
+  <div class="modal fade" id="detailModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content custom-modal">
+        <div class="modal-header">
+          <div>
+            <span class="modal-kicker">Dashboard Item</span>
+            <h5 id="detailTitle" class="modal-title">Details</h5>
+          </div>
+          <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+        </div>
+        <div id="detailBody" class="modal-body"></div>
+        <div class="modal-footer">
+          <button class="btn-purple" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS dependencies (in load order) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- FCMB JS architecture (namespace → utils → modules → app) -->
+  <script src="js/namespace.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/modules/Sidebar.js"></script>
+  <script src="js/modules/Calendar.js"></script>
+  <script src="js/modules/Search.js"></script>
+  <script src="js/modules/Theme.js"></script>
+  <script src="js/modules/Login.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
