@@ -1,329 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="FCMB Data Science — Secure sign-in portal">
   <title>Data Science — Sign In</title>
 
-  <!-- Bootstrap 4 -->
-  <link rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-  <!-- Font Awesome 5 -->
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-  <!-- Google Fonts — Inter -->
+  <!-- External dependencies -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    /* ==============================================
-       Design Tokens & Reset
-       ============================================== */
-    :root {
-      --brand:       #5d2185;
-      --brand-dark:  #481767;
-      --brand-light: #ddd0ea;
-      --brand-glow:  rgba(93, 33, 133, 0.12);
-      --accent-gold: #f0c94a;
-      --text:        #24364b;
-      --border:      #cfd6df;
-      --bg:          #ffffff;
-      --radius:      6px;
-      --ease:        0.22s ease;
-      --font-body:   'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      --font-serif:  Georgia, 'Times New Roman', serif;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font-body);
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* ==============================================
-       Page Layout
-       ============================================== */
-    .login-page {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* Brand header */
-    .brand {
-      padding-top: 40px;
-      text-align: center;
-      font-family: var(--font-serif);
-      font-size: 24px;
-      font-weight: 700;
-      letter-spacing: -0.3px;
-      color: var(--text);
-    }
-
-    .brand-mark {
-      display: inline-flex;
-      width: 31px;
-      height: 31px;
-      margin-right: 7px;
-      vertical-align: -7px;
-      align-items: center;
-      justify-content: center;
-      background: var(--brand);
-      border-radius: 2px;
-      color: #fff;
-      font-size: 8px;
-      line-height: 1;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .brand-mark::after {
-      content: '';
-      position: absolute;
-      left: 0; right: 0; bottom: 0;
-      height: 6px;
-      background: var(--accent-gold);
-    }
-
-    .brand-mark span {
-      position: relative;
-      z-index: 2;
-      margin-top: -5px;
-      font-family: Arial, sans-serif;
-      font-weight: 700;
-      letter-spacing: 0;
-    }
-
-    /* Centre the card */
-    .login-area {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 230px 20px 80px;
-    }
-
-    .login-card {
-      width: 100%;
-      max-width: 352px;
-    }
-
-    /* Profile avatar */
-    .profile-icon {
-      width: 64px;
-      height: 64px;
-      margin: 0 auto 28px;
-      border: 6px solid var(--brand-light);
-      border-radius: 50%;
-      background: var(--brand);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 29px;
-    }
-
-    @keyframes iconPop {
-      0%   { transform: scale(0.85); opacity: 0; }
-      70%  { transform: scale(1.06); }
-      100% { transform: scale(1);    opacity: 1; }
-    }
-    .profile-icon { animation: iconPop 0.4s ease forwards; }
-
-    /* Card title & subtitle */
-    .login-title {
-      margin: 0 0 8px;
-      text-align: center;
-      font-family: var(--font-serif);
-      font-size: 19px;
-      font-weight: 700;
-      color: #26394e;
-    }
-
-    .login-subtitle {
-      margin: 0 0 37px;
-      text-align: center;
-      color: #8190a5;
-      font-size: 14px;
-      transition: opacity var(--ease);
-    }
-
-    /* ==============================================
-       Form Fields
-       ============================================== */
-    .form-group { margin-bottom: 19px; }
-
-    .form-label {
-      display: block;
-      margin-bottom: 9px;
-      color: #26394e;
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .form-control {
-      height: 40px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 8px 12px;
-      color: #34495e;
-      font-size: 14px;
-      font-family: var(--font-body);
-      box-shadow: none;
-      transition: border-color var(--ease), box-shadow var(--ease);
-      width: 100%;
-    }
-
-    .form-control::placeholder { color: #a7b0bd; }
-
-    .form-control:focus {
-      border-color: var(--brand);
-      box-shadow: 0 0 0 0.15rem var(--brand-glow);
-      outline: none;
-    }
-
-    .was-validated .form-control:invalid {
-      border-color: #e74c3c;
-      box-shadow: 0 0 0 0.12rem rgba(231,76,60,.12);
-    }
-
-    .was-validated .form-control:valid { border-color: #27ae60; }
-
-    .invalid-feedback { font-size: 12px; }
-
-    /* Password wrapper with eye toggle */
-    .password-wrap { position: relative; }
-    .password-wrap .form-control { padding-right: 42px; }
-
-    .toggle-password {
-      position: absolute;
-      right: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      border: 0;
-      background: transparent;
-      color: #8995a7;
-      padding: 0;
-      cursor: pointer;
-      transition: color var(--ease);
-      line-height: 1;
-    }
-    .toggle-password:hover,
-    .toggle-password:focus { outline: none; color: var(--brand); }
-
-    /* Forgot password */
-    .forgot-row {
-      text-align: right;
-      margin-top: -8px;
-      margin-bottom: 19px;
-    }
-
-    .forgot-link {
-      color: var(--brand);
-      font-size: 12px;
-      text-decoration: none;
-    }
-    .forgot-link:hover { color: var(--brand-dark); text-decoration: underline; }
-
-    /* ==============================================
-       Two-Step: password group slide-in
-       ============================================== */
-
-    /* Password group is hidden on step 1 */
-    .password-group {
-      overflow: hidden;
-      max-height: 0;
-      opacity: 0;
-      /* smooth reveal */
-      transition: max-height 0.38s ease, opacity 0.28s ease 0.08s;
-    }
-
-    /* When JS adds .visible — slide open */
-    .password-group.visible {
-      max-height: 200px;   /* generous upper bound */
-      opacity: 1;
-    }
-
-    /* ==============================================
-       Submit Button
-       ============================================== */
-    .btn-login {
-      width: 100%;
-      height: 42px;
-      border: 0;
-      border-radius: var(--radius);
-      background: var(--brand);
-      color: #fff;
-      font-size: 14px;
-      font-weight: 600;
-      font-family: var(--font-body);
-      letter-spacing: 0.2px;
-      box-shadow: 0 3px 7px rgba(65,26,91,.23);
-      transition: background var(--ease), transform var(--ease), box-shadow var(--ease);
-      cursor: pointer;
-    }
-
-    .btn-login:hover {
-      background: var(--brand-dark);
-      color: #fff;
-      box-shadow: 0 5px 14px rgba(65,26,91,.30);
-    }
-
-    .btn-login:active  { transform: translateY(1px); }
-    .btn-login:disabled { opacity: .75; cursor: not-allowed; transform: none; }
-
-    /* ==============================================
-       Shake on invalid
-       ============================================== */
-    @keyframes shake {
-      0%,100% { transform: translateX(0); }
-      20%      { transform: translateX(-6px); }
-      40%      { transform: translateX(6px); }
-      60%      { transform: translateX(-4px); }
-      80%      { transform: translateX(4px); }
-    }
-    .shake { animation: shake 0.4s ease; }
-
-    /* ==============================================
-       Footer
-       ============================================== */
-    .footer {
-      padding: 0 20px 42px;
-      text-align: center;
-      color: #425873;
-      font-family: var(--font-serif);
-      font-size: 14px;
-    }
-    .footer strong { font-weight: 700; }
-
-    @media (max-width: 576px) {
-      .brand      { padding-top: 25px; }
-      .login-area { padding-top: 120px; padding-bottom: 50px; }
-      .login-card { max-width: 360px; }
-      .footer     { padding-bottom: 25px; }
-    }
-  </style>
+  <!-- Shared CSS barrel (variables → base → layout → components → pages/login) -->
+  <link rel="stylesheet" href="css/main.css">
 </head>
 
-<body>
+<!-- data-page="login" tells app.js to boot FCMB.Login -->
+<body data-page="login">
   <main class="login-page">
 
     <!-- Brand header -->
-    <header class="brand" aria-label="Data Science">
-      <span class="brand-mark"><span>FCMB</span></span>
+    <header class="login-brand" aria-label="Data Science">
+      <span class="login-brand-mark"><span>FCMB</span></span>
       <span>Data Science</span>
     </header>
 
-    <!-- Login content area -->
+    <!-- Login card area -->
     <section class="login-area">
       <div class="login-card">
 
@@ -340,7 +44,7 @@
         <!-- Two-step login form -->
         <form id="loginForm" novalidate>
 
-          <!-- STEP 1 — Email only -->
+          <!-- Step 1 — Email -->
           <div class="form-group" id="emailGroup">
             <label class="form-label" for="email">Work Email</label>
             <input
@@ -357,7 +61,7 @@
             </div>
           </div>
 
-          <!-- STEP 2 — Password (hidden until Continue is clicked) -->
+          <!-- Step 2 — Password (hidden until Continue clicked) -->
           <div class="password-group" id="passwordGroup">
             <div class="form-group">
               <label class="form-label" for="password">Password</label>
@@ -369,7 +73,6 @@
                   name="password"
                   placeholder="Enter your password"
                   autocomplete="current-password"
-                  minlength="6"
                 >
                 <button
                   type="button"
@@ -390,8 +93,8 @@
             </div>
           </div>
 
-          <!-- CTA button — label changes per step -->
-          <button type="submit" class="btn btn-login" id="loginButton">
+          <!-- CTA — label controlled by FCMB.Login JS module -->
+          <button type="submit" class="btn-login" id="loginButton">
             Continue
           </button>
 
@@ -400,153 +103,22 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="login-footer">
       &copy; 2026 Designed &amp; Developed by <strong>Data Science</strong>
     </footer>
 
   </main>
 
-  <!-- Bootstrap 4 JS bundle -->
+  <!-- Bootstrap 4 JS -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-  <!-- FCMBLogin — Two-Step Flow Module -->
-  <script>
-    var FCMBLogin = (function () {
-      'use strict';
+  <!-- FCMB JS architecture (namespace → utils → modules → app) -->
+  <script src="js/namespace.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/modules/Login.js"></script>
+  <script src="js/app.js"></script>
 
-      /* Current step: 1 = email, 2 = password */
-      var step = 1;
-
-      /* DOM cache */
-      var DOM = {};
-
-      /* ---- Helpers ---- */
-
-      function shakeCard() {
-        var card = document.querySelector('.login-card');
-        card.classList.remove('shake');
-        void card.offsetWidth; /* reflow to restart animation */
-        card.classList.add('shake');
-        card.addEventListener('animationend', function () {
-          card.classList.remove('shake');
-        }, { once: true });
-      }
-
-      function isValidEmail(value) {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
-      }
-
-      /* ---- Step transitions ---- */
-
-      /**
-       * Step 1 → Step 2
-       * Reveals the password field and renames the button to "Login".
-       */
-      function revealPasswordStep() {
-        step = 2;
-
-        /* Slide in password group */
-        DOM.passwordGroup.classList.add('visible');
-
-        /* Update button label */
-        DOM.button.textContent = 'Login';
-
-        /* Update subtitle hint */
-        DOM.subtitle.textContent = 'Enter your password to sign in';
-
-        /* Make password field required now that it is visible */
-        DOM.password.setAttribute('required', '');
-        DOM.password.setAttribute('minlength', '6');
-
-        /* Focus password after transition */
-        setTimeout(function () { DOM.password.focus(); }, 360);
-      }
-
-      /* ---- Event handlers ---- */
-
-      function handleTogglePassword() {
-        var hidden = DOM.password.type === 'password';
-        DOM.password.type = hidden ? 'text' : 'password';
-        DOM.toggle.setAttribute('aria-label', hidden ? 'Hide password' : 'Show password');
-        DOM.toggle.innerHTML = hidden
-          ? '<i class="fas fa-eye-slash"></i>'
-          : '<i class="fas fa-eye"></i>';
-      }
-
-      function handleSubmit(event) {
-        event.preventDefault();
-        event.stopPropagation();
-
-        /* ---- Step 1: validate email, reveal password ---- */
-        if (step === 1) {
-          if (!isValidEmail(DOM.email.value)) {
-            DOM.form.classList.add('was-validated');
-            shakeCard();
-            return;
-          }
-          /* Email valid — move to step 2 */
-          DOM.form.classList.remove('was-validated');
-          revealPasswordStep();
-          return;
-        }
-
-        /* ---- Step 2: validate password, submit ---- */
-        if (!DOM.form.checkValidity()) {
-          DOM.form.classList.add('was-validated');
-          shakeCard();
-          return;
-        }
-
-        /* Both fields valid — trigger auth */
-        DOM.button.disabled = true;
-        DOM.button.innerHTML =
-          '<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>' +
-          'Signing in…';
-
-        /* Replace with real API call */
-        setTimeout(function () {
-          DOM.button.disabled = false;
-          DOM.button.textContent = 'Login';
-          alert('Connect this form to your authentication endpoint.');
-        }, 700);
-      }
-
-      function handleForgot(event) {
-        event.preventDefault();
-        alert('Connect this link to your password recovery flow.');
-      }
-
-      /* ---- Init ---- */
-
-      function init() {
-        DOM.form          = document.getElementById('loginForm');
-        DOM.email         = document.getElementById('email');
-        DOM.password      = document.getElementById('password');
-        DOM.toggle        = document.getElementById('togglePassword');
-        DOM.forgot        = document.getElementById('forgotPassword');
-        DOM.button        = document.getElementById('loginButton');
-        DOM.passwordGroup = document.getElementById('passwordGroup');
-        DOM.subtitle      = document.getElementById('loginSubtitle');
-
-        DOM.toggle.addEventListener('click', handleTogglePassword);
-        DOM.forgot.addEventListener('click', handleForgot);
-        DOM.form.addEventListener('submit',  handleSubmit);
-
-        /* Auto-advance to step 2 when user presses Enter on email field */
-        DOM.email.addEventListener('keydown', function (e) {
-          if (e.key === 'Enter' && step === 1) {
-            e.preventDefault();
-            DOM.form.dispatchEvent(new Event('submit', { cancelable: true }));
-          }
-        });
-      }
-
-      return { init: init };
-    }());
-
-    document.addEventListener('DOMContentLoaded', FCMBLogin.init);
-  </script>
 </body>
 </html>
