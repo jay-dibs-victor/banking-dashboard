@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FCMB CFO Financial Performance Upload Portal — Executive data ingestion for quarterly reports, budget variance, and regulatory financial statements.">
+  <title>FCMB CFO Financial Performance Ingestion</title>
+
+  <!-- Typography & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <!-- FCMB Design System Barrel -->
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body data-page="cfo-upload">
+
+  <div class="app-shell">
+
+    <!-- ── SIDEBAR ────────────────────────────────────────────── -->
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-top">
+        <button id="collapseSidebar" class="sidebar-collapse" aria-label="Toggle sidebar">
+          <i class="fas fa-exchange-alt"></i>
+        </button>
+        <button id="mobileSidebarClose" class="mobile-sidebar-close" aria-label="Close sidebar">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="brand">
+        <div class="fcmb-mark">FCMB</div>
+        <div class="brand-copy">
+          <strong>GROUP LEGAL</strong>
+          <strong>DASHBOARD</strong>
+        </div>
+      </div>
+
+      <nav class="side-nav">
+        <div class="nav-section-title">OVERVIEW</div>
+
+        <a href="index.html#dashboard" class="side-link" data-section="dashboard">
+          <span class="side-icon"><i class="fas fa-th-large"></i></span>
+          <span class="side-text">Dashboard</span>
+        </a>
+
+        <div class="nav-section-title">EXECUTIVE PORTALS</div>
+
+        <a href="fcmb_cfo_performance_upload.html" class="side-link active" data-section="cfo-upload">
+          <span class="side-icon"><i class="fas fa-file-upload"></i></span>
+          <span class="side-text">CFO Upload Portal</span>
+        </a>
+
+        <div class="nav-section-title">LEGAL MODULES</div>
+
+        <a href="index.html#secretariat" class="side-link" data-section="secretariat">
+          <span class="side-icon"><i class="fas fa-landmark"></i></span>
+          <span class="side-text">Secretariat</span>
+        </a>
+
+        <a href="index.html#documentation" class="side-link" data-section="documentation">
+          <span class="side-icon"><i class="far fa-file-alt"></i></span>
+          <span class="side-text">Documentation</span>
+        </a>
+
+        <a href="index.html#litigation" class="side-link" data-section="litigation">
+          <span class="side-icon"><i class="fas fa-shield-alt"></i></span>
+          <span class="side-text">Litigation Dashboard</span>
+        </a>
+
+        <a href="index.html#perfection" class="side-link" data-section="perfection">
+          <span class="side-icon"><i class="fas fa-chart-line"></i></span>
+          <span class="side-text">Perfection Tracker</span>
+        </a>
+
+        <a href="index.html#transactions" class="side-link" data-section="transactions">
+          <span class="side-icon"><i class="far fa-file-video"></i></span>
+          <span class="side-text">Transaction Review</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- ── MAIN CONTENT AREA ─────────────────────────────────── -->
+    <div id="main" class="main">
+
+      <!-- TOPBAR HEADER -->
+      <header class="topbar">
+        <button id="mobileSidebarOpen" class="mobile-menu-btn" aria-label="Open navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="topbar-date">
+          <button id="dateButton" class="date-button" type="button">
+            <span id="currentDate">Oct 3, 2026</span>
+          </button>
+
+          <!-- Date Picker Popover -->
+          <div id="datePicker" class="date-picker">
+            <div class="calendar-head">
+              <button class="calendar-nav" data-calendar="prev" aria-label="Previous month"><i class="fas fa-chevron-left"></i></button>
+              <strong id="calendarTitle">October 2026</strong>
+              <button class="calendar-nav" data-calendar="next" aria-label="Next month"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="calendar-week">
+              <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span>
+              <span>Thu</span><span>Fri</span><span>Sat</span>
+            </div>
+            <div id="calendarDays" class="calendar-days"></div>
+            <div class="calendar-footer">
+              <button id="todayButton" class="btn btn-sm btn-light">Today</button>
+              <button id="closeDate" class="btn btn-sm btn-purple">Done</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Global Search Bar -->
+        <div class="topbar-search">
+          <input id="globalSearch" type="text" placeholder="Search financial reports, entities, periods..." autocomplete="off" aria-label="Search">
+          <button id="searchButton" type="button" aria-label="Submit Search"><i class="fas fa-search"></i></button>
+          <div id="searchResults" class="search-results"></div>
+        </div>
+
+        <!-- Topbar Actions & User Profile -->
+        <div class="topbar-actions">
+          <button class="top-action flag-action" title="Workspace" aria-label="Workspace">
+            <span class="workspace-dot"></span>
+            <i class="fas fa-external-link-alt"></i>
+          </button>
+          <button id="themeToggle" class="top-action" title="Toggle theme" aria-label="Toggle Theme">
+            <i class="far fa-moon"></i>
+          </button>
+          <button class="top-action" title="Settings" aria-label="Settings">
+            <i class="fas fa-cog"></i>
+          </button>
+          <div class="profile">
+            <div class="profile-avatar"><i class="fas fa-user-shield"></i></div>
+            <span>CFO Executive Desk</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+        </div>
+      </header>
+
+      <!-- PAGE CONTENT -->
+      <main class="content">
+        <section class="page-section">
+
+          <!-- EXECUTIVE HERO BANNER -->
+          <div class="cfo-hero">
+            <div class="cfo-hero-badge">
+              <i class="fas fa-shield-alt"></i> Executive Ingestion Suite
+            </div>
+            <h1>CFO Financial Performance Upload Portal</h1>
+            <p>Secure executive portal for submitting quarterly financial packages, audited statements, trial balances, and subsidiary performance reports directly to the FCMB Data Science Analytics Engine.</p>
+
+            <div class="cfo-hero-stats">
+              <div class="cfo-stat-item">
+                <span class="cfo-stat-label">Active Period</span>
+                <span class="cfo-stat-val">FY2026 Q3 (Quarter 3)</span>
+              </div>
+              <div class="cfo-stat-item">
+                <span class="cfo-stat-label">Compliance Status</span>
+                <span class="cfo-stat-val" style="color: var(--accent-gold);">Compliant (CBN / SEC)</span>
+              </div>
+              <div class="cfo-stat-item">
+                <span class="cfo-stat-label">Pipeline Status</span>
+                <span class="cfo-stat-val" style="color: var(--mint);">Ingestion Online</span>
+              </div>
+              <div class="cfo-stat-item">
+                <span class="cfo-stat-label">Last Ingested</span>
+                <span class="cfo-stat-val">02 Oct 2026, 16:45 WAT</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Content sections added in next branch (feature/cfo-03-dropzone-and-form) -->
+
+        </section>
+      </main>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        Designed &amp; Developed by <a href="#">Data Science Group</a> — FCMB Executive Portal
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- MOBILE OVERLAY -->
+  <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+  <!-- JS MODULE ARCHITECTURE -->
+  <script src="js/namespace.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/modules/Sidebar.js"></script>
+  <script src="js/modules/Calendar.js"></script>
+  <script src="js/modules/Search.js"></script>
+  <script src="js/modules/Theme.js"></script>
+  <script src="js/modules/Modal.js"></script>
+  <script src="js/modules/Login.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
